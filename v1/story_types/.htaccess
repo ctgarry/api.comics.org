@@ -1,0 +1,21 @@
+# The meaning of every line is the following:
+#  RewriteEngine on: Enable the runtime rewriting engine.
+#  RewriteCond %{REQUEST_FILENAME} !-f: The rewriting will take place if the 
+#      requested filename is not a regular file or if the file doesn't exist.
+#  RewriteCond %{REQUEST_FILENAME} !-d: The rewriting will take place if the 
+#      requested filename is not directory or if the directory doesn't exist.
+#  RewriteRule ^(.*)$ / [L,QSA]: If the above conditions both match (the 
+#      requested file isn't a file, isn't a directory, and doesn't exist) then 
+#      the URL will be rewritten to the root of your website. The "L" means  
+#      that the rewriting process should stop immediately after this rule has 
+#      been applied and the "QSA" means that any query string from the  
+#      original request URL must be appended to the rewrite target.
+
+RewriteEngine On
+RewriteBase /blackbox/bymonth/api/v1/story_types/
+# RewriteBase /api/v1/story_types/
+# RewriteRule ^default\.php$ - [L]
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ default.php [QSA]
+# RewriteRule ^(.+)$ default.php [QSA,L]
