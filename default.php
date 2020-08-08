@@ -18,6 +18,7 @@
 
 <h2>comics.org data REST API methods</h2>
 <h3>updated <?=date("F d Y H:i:s", filemtime("default.php"))?> UTC.</h3>
+<h3><a target="github" href="https://github.com/ctgarry/api.comics.org">https://github.com/ctgarry/api.comics.org</a></h3>
 
     <table border=0>
         <tr>
