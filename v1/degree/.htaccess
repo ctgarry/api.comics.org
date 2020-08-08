@@ -13,9 +13,9 @@
 
 RewriteEngine On
 RewriteBase /blackbox/bymonth/api/v1/degree/
-# RewriteBase /api/v1/degree/
+# RewriteBase /blackbox/bymonth/api/v1/degree/
 # RewriteRule ^default\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ ./default.php [QSA]
+RewriteRule ^(.*)$ default.php [QSA]
 # RewriteRule ^(.+)$ default.php [QSA,L]

@@ -128,6 +128,26 @@ if ($series_id > 0 && strpos($request, 'brand_emblems') !== false ) { //found it
 } else {
 	$query = "SELECT * FROM " . $DBName . ".gcd_series WHERE id = ?";
 };
+
+/** Search by name 
+ * example: /v1/series/?name=fantastic+four&page=2 **/
+ if ($series_id == 0 && strpos($request, 'name') !== false ) { //found it
+
+	$page = intval(isset($_GET['page']) ?$_GET['page'] : 0); if ($page < 1) $page = 1;
+	$count = 25;
+	$skip = ($page-1) * $count;
+	$param = isset($_GET['name']) ?$_GET['name'] : ""; 
+	$params_types = 'sii';
+    $params = array( $param, $skip, $count );
+    $query = "SELECT `id`, `name`, `year_began`, `publisher_id`, `country_id`
+		FROM " . $DBName . ".gcd_series WHERE INSTR( `name`, ? ) > 0 
+		ORDER BY `issue_count` DESC, `year_began`
+		LIMIT ?, ?";
+
+	if ( $param == "" || strlen($param)<2 ) { $series_id=0; } else { $series_id=1; } 
+
+}
+
 if (false) {echo "{'\$query': " . json_encode($query) . "}," . PHP_EOL;}
 
 /** Fetch data **/

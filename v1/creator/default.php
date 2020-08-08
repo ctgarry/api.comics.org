@@ -16,6 +16,29 @@ if ($issue_id > 0 && strpos($request, 'names') !== false ) { //found it
 } else {
 	$query = "SELECT * FROM " . $DBName . ".gcd_creator WHERE id = ?";
 };
+
+/** Search by name 
+ * example: /v1/creator/?name=simmons&page=2 **/
+if ( $creator_id == 0 && strpos($request, 'name') !== false ) { //found it
+
+	$page = intval(isset($_GET['page']) ?$_GET['page'] : 0); if ($page < 1) $page = 1;
+	$count = 25;	
+	$skip = ($page-1) * $count;
+	$param = isset($_GET['name']) ?$_GET['name'] : ""; 
+	$params_types = 'sii';
+    $params = array( $param, $skip, $count );
+    $query = "SELECT c.`id`, c.`gcd_official_name`, c.`birth_country_id`
+        FROM " . $DBName . ".gcd_creator c
+        INNER JOIN " . $DBName . ".gcd_story_credit sc ON sc.creator_id = c.id
+        WHERE INSTR( `gcd_official_name`, ? ) > 0 
+		GROUP BY  c.id
+        ORDER BY COUNT(sc.creator_id) DESC
+		LIMIT ?, ?";
+
+    if ( $param == "" || strlen($param)<2 ) { $creator_id=0; } else { $creator_id=1; } 
+
+}
+
 if (false) {echo "{'\$query': " . json_encode($query) . "}," . PHP_EOL;}
 
 /** Fetch data **/

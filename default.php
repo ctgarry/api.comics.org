@@ -38,7 +38,15 @@
                     <tr>
                         <td>GET</td>
                         <td><a target="api" href="v1/publisher/54/">/v1/publisher/54/</a></td>
-                        <td><a target="gcd" href="http://www.comics.org/publisher/54/"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/publisher/54/"><img class=myB
+                                    src="images/r/gcd.png" /></a>
+                        </td>
+                        <td>gcd_publisher</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td>└─<a target="api" href="v1/publisher/?name=dc">/v1/publisher/?name=dc&page=1</a></td>
+                        <td><a target="gcd" href="https://www.comics.org/searchNew/?q=dc&search_object=publisher"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         </td>
                         <td>gcd_publisher</td>
@@ -46,7 +54,7 @@
                     <tr>
                         <td>GET</td>
                         <td>└─<a target="api" href="v1/publisher/54/brand_groups">/v1/publisher/54/brand_groups</a></td>
-                        <td><a target="gcd" href="http://www.comics.org/publisher/54/brands"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/publisher/54/brands"><img class=myB
                                     src="images/r/gcd.png" /></a></td>
                         <td>gcd_brand_group</td>
                         <!-- gcd_brand_group WHERE parent_id = 54 -->
@@ -54,7 +62,7 @@
                     <tr>
                         <td>GET</td>
                         <td><a target="api" href="v1/indicia_publisher/5">/v1/indicia_publisher/5</a></td>
-                        <td><a target="gcd" href="http://www.comics.org/indicia_publisher/5"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/indicia_publisher/5"><img class=myB
                                     src="images/r/gcd.png" /></a></td>
                         <td>gcd_indicia_publisher</td>
                     </tr>
@@ -72,7 +80,15 @@
                     <tr>
                         <td>GET</td>
                         <td><a target="api" href="v1/series/97">/v1/series/97</a></td>
-                        <td><a target="gcd" href="http://www.comics.org/series/97"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/series/97"><img class=myB
+                                    src="images/r/gcd.png" /></a>
+                        </td>
+                        <td>gcd_series</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td>└─<a target="api" href="v1/series/?name=fantastic">/v1/series/?name=fantastic&page=1</a></td>
+                        <td><a target="gcd" href="https://www.comics.org/searchNew/?q=fantastic&search_object=series"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         </td>
                         <td>gcd_series</td>
@@ -115,7 +131,7 @@
                     <tr>
                         <td>GET</td>
                         <td><a target="api" href="v1/issue/7521">/v1/issue/7521</a></td>
-                        <td><a target="gcd" href="http://www.comics.org/issue/7521"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/issue/7521"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         </td>
                         <td>gcd_issue</td>
@@ -184,7 +200,7 @@
                     <tr>
                         <td>GET</td>
                         <td><a target="api" href="v1/brand_emblem/4">/v1/brand_emblem/4</a></td>
-                        <td><a target="gcd" href="http://www.comics.org/brand_emblem/4"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/brand_emblem/4"><img class=myB
                                     src="images/r/gcd.png" /></a></td>
                         <td>gcd_brand</td>
                     </tr>
@@ -206,7 +222,7 @@
                     <tr>
                         <td>GET</td>
                         <td><a target="api" href="v1/brand_group/1563">/v1/brand_group/1563</a></td>
-                        <td><a target="gcd" href="http://www.comics.org/brand_group/1563"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/brand_group/1563"><img class=myB
                                     src="images/r/gcd.png" /></a></td>
                         <td>gcd_brand_group</td>
                     </tr>
@@ -322,7 +338,14 @@
                     <tr>
                         <td>GET</td>
                         <td><a target="api" href="v1/creator/11642">/v1/creator/11642</a></td>
-                        <td><a target="gcd" href="http://www.comics.org/creator/11642"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/creator/11642"><img class=myB
+                                    src="images/r/gcd.png" /></a></td>
+                        <td>gcd_creator</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td>└─<a target="api" href="v1/creator/?name=davis">/v1/creator/?name=davis&page=1</a></td>
+                        <td><a target="gcd" href="https://www.comics.org/searchNew/?q=davis&search_object=creator"><img class=myB
                                     src="images/r/gcd.png" /></a></td>
                         <td>gcd_creator</td>
                     </tr>
@@ -397,21 +420,21 @@
                     <tr>
                         <td>GET</td>
                         <td><a target="api" href="v1/creator_school/607">/v1/creator_school/607</a></td>
-                        <td><a target="gcd" href="http://www.comics.org/creator_school/607/"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/creator_school/607/"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         <td>gcd_school</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/award/6">/v1/award/6</a> <span class="warning">[api bug: some awards are too large and the json is empty!]</span></td>
-                        <td><a target="gcd" href="http://www.comics.org/award/6/"><img class=myB
+                        <td><a target="api" href="v1/award/6">/v1/award/6</a> </td>
+                        <td><a target="gcd" href="https://www.comics.org/award/6/"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         <td>gcd_award</td>
                     </tr>
                     <tr>
                         <td>GET</td>
                         <td><a target="api" href="v1/received_award/4938">/v1/received_award/4938</a></td>
-                        <td><a target="gcd" href="http://www.comics.org/received_award/4938/"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/received_award/4938/"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         <td>gcd_received_award</td>
                     </tr>
@@ -429,7 +452,7 @@
                     <tr>
                         <td>GET</td>
                         <td><a target="api" href="v1/feature/98/">/v1/feature/98/</a></td>
-                        <td><a target="gcd" href="http://www.comics.org/feature/98/"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/feature/98/"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         <td>gcd_feature</td>
                     </tr>
@@ -464,7 +487,7 @@
                     <tr>
                         <td>GET</td>
                         <td><a target="api" href="v1/feature_logo/93/">/v1/feature_logo/93/</a> <span class="warning">[gcd bug: table missing!]</span></td>
-                        <td><a target="gcd" href="http://www.comics.org/feature_logo/93/"><img class=myB
+                        <td><a target="gcd" href="https://www.comics.org/feature_logo/93/"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         <td>gcd_feaure_logo</td>
                     </tr>
@@ -502,7 +525,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/countries/">/v1/countries</a> <span class="warning">[api bug: list too long and the json is empty!]</span></td>
+                        <td><a target="api" href="v1/countries/">/v1/countries</a></td>
                         <td>(269 countries)</td>
                         <td>stddata_country</td>
                     </tr>
@@ -514,7 +537,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/languages/">/v1/languages</a> <span class="warning">[api bug: list too long and the json is empty!]</span></td>
+                        <td><a target="api" href="v1/languages/">/v1/languages</a></td>
                         <td>(153 languages)</td>
                         <td>stddata_language</td>
                     </tr>

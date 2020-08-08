@@ -13,9 +13,9 @@
 
 RewriteEngine On
 RewriteBase /blackbox/bymonth/api/v1/non_comic_work_role/
-# RewriteBase /api/v1/non_comic_work_role/
+# RewriteBase /blackbox/bymonth/api/v1/non_comic_work_role/
 # RewriteRule ^default\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ ./default.php [QSA]
+RewriteRule ^(.*)$ default.php [QSA]
 # RewriteRule ^(.+)$ default.php [QSA,L]

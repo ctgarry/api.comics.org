@@ -57,7 +57,7 @@ function getData( $conn, $query, $params='', $params_types='' ) {
         while ($stmt->fetch()) {
             $c = array();
             foreach ($row as $key => $val) { $c[$key] = $val; }
-            $getData[] = $c;
+            $getData[] = array_map('utf8_encode', $c); // solves empty json translation
         }
     } else {
         $getData = array(

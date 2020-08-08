@@ -13,7 +13,7 @@
 
 RewriteEngine On
 RewriteBase /blackbox/bymonth/api/v1/non_comic_work_roles/
-# RewriteBase /api/v1/non_comic_work_roles/
+# RewriteBase /blackbox/bymonth/api/v1/non_comic_work_roles/
 # RewriteRule ^default\.php$ - [L]
 # RewriteCond %{REQUEST_FILENAME} !-f
 # RewriteCond %{REQUEST_FILENAME} !-d

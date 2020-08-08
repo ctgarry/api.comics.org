@@ -13,7 +13,7 @@
 
 RewriteEngine On
 RewriteBase /blackbox/bymonth/api/v1/series_publication_types/
-# RewriteBase /api/v1/series_publication_types/
+# RewriteBase /blackbox/bymonth/api/v1/series_publication_types/
 # RewriteRule ^default\.php$ - [L]
 # RewriteCond %{REQUEST_FILENAME} !-f
 # RewriteCond %{REQUEST_FILENAME} !-d

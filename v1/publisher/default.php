@@ -16,6 +16,26 @@ if ($publisher_id > 0 && strpos($request, 'brand_groups') !== false ) { //found 
 } else {
 	$query = "SELECT * FROM " . $DBName . ".gcd_publisher WHERE id = ?";
 };
+
+/** Search by name 
+ * example: /v1/publisher/?name=dc&page=3 **/
+if ( $publisher_id == 0 && strpos($request, 'name') !== false ) { //found it
+
+	$page = intval(isset($_GET['page']) ?$_GET['page'] : 0); if ($page < 1) $page = 1;
+	$count = 25;	
+	$skip = ($page-1) * $count;
+	$param = isset($_GET['name']) ?$_GET['name'] : ""; 
+	$params_types = 'sii';
+    $params = array( $param, $skip, $count );
+    $query = "SELECT `id`, `name`, `year_began`, `country_id`
+		FROM " . $DBName . ".gcd_publisher WHERE INSTR( `name`, ? ) > 0 
+		ORDER BY `series_count` DESC, `issue_count` DESC, `year_began`
+		LIMIT ?, ?";
+
+    if ( $param == "" || strlen($param)<2 ) { $publisher_id=0; } else { $publisher_id=1; } 
+
+}
+
 if (false) {echo "{'\$query': " . json_encode($query) . "}," . PHP_EOL;}
 
 /** Fetch data **/
