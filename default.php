@@ -17,8 +17,12 @@
 <body>
 
 <h2>comics.org data REST API methods</h2>
-<h3>updated <?=date("F d Y H:i:s", filemtime("default.php"))?> UTC.</h3>
-<h3><a target="github" href="https://github.com/ctgarry/api.comics.org">https://github.com/ctgarry/api.comics.org</a></h3>
+<b><ul>
+<li>this page updated: <?=date("F d Y H:i:s", filemtime("default.php"))?> UTC. </li>
+<li>MySQL data source: <a target="gcd" href="https://www.comics.org/download/">gcd data dump</a> 2020-08-15 03:41:16 </li>
+<li>demo source control: <a target="github" href="https://github.com/ctgarry/api.comics.org">https://github.com/ctgarry/api.comics.org</a> </li>
+</ul>
+</b>
 
     <table border=0>
         <tr>
@@ -486,7 +490,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/feature_logo/93/">/v1/feature_logo/93/</a> <span class="warning">[gcd bug: table missing!]</span></td>
+                        <td><a target="api" href="v1/feature_logo/93/">/v1/feature_logo/93/</a> </td>
                         <td><a target="gcd" href="https://www.comics.org/feature_logo/93/"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         <td>gcd_feaure_logo</td>
