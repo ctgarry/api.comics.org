@@ -149,47 +149,22 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/issue/7521/issue_reprints"-->/v1/issue/7521/issue_reprints</a></td>
+                        <td>└─<a target="api" href="v1/issue/391286/issue_reprints">/v1/issue/391286/issue_reprints</a></td>
                         <td>Parts of this issue are reprinted in another issue</td>
                         <td>gcd_issue_reprint</td>
                     </tr>
-                    <!--
-                        # ISSUE REPRINT
-                        # "Parts of this issue are reprinted in another issue". Example:
-                        SELECT ir.origin_issue_id, ir.target_issue_id 
-                        FROM gcdprod.gcd_issue_reprint ir WHERE ir.id = 1;
-                        # --- origin_issue_id=391286 target_issue_id=761531
-                    -->
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/issue/536367/reprints_from_issue"-->/v1/issue/536367/reprints_from_issue</a></td>
+                        <td>└─<a target="api" href="v1/issue/536367/reprints_from_issue">/v1/issue/536367/reprints_from_issue</a></td>
                         <td>Parts of this issue are reprinted TO a specific STORY</td>
                         <td>gcd_reprint_from_issue</td>
                     </tr>
-                    <!--
-                        # REPRINT _FROM_ ISSUE
-                        # "Parts of this issue are reprinted TO a specific STORY" Example:
-                        SELECT rfi.origin_issue_id, stTo.issue_id AS to_issue, rfi.target_id
-                        FROM gcdprod.gcd_reprint_from_issue rfi 
-                        INNER JOIN " . $DBName . ".gcd_story stTo ON stTo.id = rfi.target_id
-                        WHERE rfi.id = 47;
-                        # --- origin_issue_id=536367 to_issue=636145 target_id=928788
-                    -->
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/issue/303196/reprints_to_issue"-->/v1/issue/303196/reprints_to_issue</a></td>
+                        <td>└─<a target="api" href="v1/issue/636292/reprints_to_issue">/v1/issue/636292/reprints_to_issue</a></td>
                         <td>Parts of this issue are reprinted FROM a specific STORY</td>
                         <td>gcd_reprint_to_issue</td>
                     </tr>
-                    <!--
-                        # REPRINT _TO_ ISSUE
-                        # "Parts of this issue are reprinted FROM a specific STORY" Example:
-                        SELECT rti.origin_id, stFrom.issue_id AS from_issue, rti.target_issue_id 
-                        FROM gcdprod.gcd_reprint_to_issue rti 
-                        INNER JOIN " . $DBName . ".gcd_story stFrom ON stFrom.id = rti.origin_id
-                        WHERE rti.id = 19;
-                        # --- origin_id=506106 from_issue=303196 target_issue_id=636292
-                    -->
                     <tr>
                         <td>GET</td>
                         <td>└─<!--a target="api" href="v1/issue/7521/stories"-->/v1/issue/7521/stories</a></td>
