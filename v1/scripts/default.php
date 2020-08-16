@@ -15,6 +15,10 @@ if (sizeof($scripts) == 0) {
     $scripts = array(
         'error' => '(message 2) scripts not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($scripts) == 1) {
     $scripts = $scripts[0];
 }

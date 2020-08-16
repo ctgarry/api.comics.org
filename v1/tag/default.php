@@ -20,6 +20,10 @@ if (sizeof($tag) == 0) {
     $tag = array(
         'error' => '(message 2) tag not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($tag) == 1) {
     $tag = $tag[0];
 }

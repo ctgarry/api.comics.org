@@ -23,6 +23,10 @@ if (sizeof($creator_signature) == 0) {
     $creator_signature = array(
         'error' => '(message 2) creator_signature not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($creator_signature) == 1) {
     $creator_signature = $creator_signature[0];
 }

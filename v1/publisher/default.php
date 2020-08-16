@@ -48,6 +48,10 @@ if (sizeof($publisher) == 0) {
     $publisher = array(
         'error' => '(message 2) publisher not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($publisher) == 1) {
     $publisher = $publisher[0];
 }

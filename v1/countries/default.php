@@ -15,6 +15,10 @@ if (sizeof($countries) == 0) {
     $countries = array(
         'error' => '(message 2) countries not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($countries) == 1) {
     $countries = $countries[0];
 }

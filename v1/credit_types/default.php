@@ -15,6 +15,10 @@ if (sizeof($credit_types) == 0) {
     $credit_types = array(
         'error' => '(message 2) credit_types not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($credit_types) == 1) {
     $credit_types = $credit_types[0];
 }

@@ -20,6 +20,10 @@ if (sizeof($series_bond_type) == 0) {
     $series_bond_type = array(
         'error' => '(message 2) series_bond_type not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($series_bond_type) == 1) {
     $series_bond_type = $series_bond_type[0];
 }

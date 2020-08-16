@@ -23,6 +23,10 @@ if (sizeof($brand_group) == 0) {
     $brand_group = array(
         'error' => '(message 2) brand_group not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($brand_group) == 1) {
     $brand_group = $brand_group[0];
 }

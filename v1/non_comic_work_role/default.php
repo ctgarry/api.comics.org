@@ -23,6 +23,10 @@ if (sizeof($non_comic_work_role) == 0) {
     $non_comic_work_role = array(
         'error' => '(message 2) non_comic_work_role not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($non_comic_work_role) == 1) {
     $non_comic_work_role = $non_comic_work_role[0];
 }

@@ -40,7 +40,7 @@ function getRequest($path, $method, $verbose=false) {
 
 function getData( $conn, $query, $params='', $params_types='' ) {
 
-    if ($stmt = $conn->prepare($query)) {
+    if ( $stmt = $conn->prepare($query) ) {
         if ( gettype($params) == "array" ) {
             $stmt->bind_param($params_types, ...$params);
         }
@@ -59,14 +59,16 @@ function getData( $conn, $query, $params='', $params_types='' ) {
             foreach ($row as $key => $val) { $c[$key] = $val; }
             $getData[] = array_map('utf8_encode', $c); // solves empty json translation
         }
+
+        $stmt->free_result();
+        $stmt->close();
+
     } else {
         $getData = array(
             'error' => '(message 1) params not found'
         );
     };
 
-    $stmt->free_result();
-    $stmt->close();
     $conn->close();
 
     return $getData;

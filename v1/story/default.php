@@ -20,6 +20,10 @@ if (sizeof($story) == 0) {
     $story = array(
         'error' => '(message 2) story not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($story) == 1) {
     $story = $story[0];
 }

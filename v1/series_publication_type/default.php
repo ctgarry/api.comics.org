@@ -20,6 +20,10 @@ if (sizeof($series_publication_type) == 0) {
     $series_publication_type = array(
         'error' => '(message 2) series_publication_type not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($series_publication_type) == 1) {
     $series_publication_type = $series_publication_type[0];
 }

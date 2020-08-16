@@ -23,6 +23,10 @@ if (sizeof($membership_type) == 0) {
     $membership_type = array(
         'error' => '(message 2) membership_type not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($membership_type) == 1) {
     $membership_type = $membership_type[0];
 }

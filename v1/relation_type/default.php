@@ -23,6 +23,10 @@ if (sizeof($relation_type) == 0) {
     $relation_type = array(
         'error' => '(message 2) relation_type not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($relation_type) == 1) {
     $relation_type = $relation_type[0];
 }

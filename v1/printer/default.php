@@ -15,7 +15,7 @@ $request = $_SERVER['REQUEST_URI'];
  * example: /v1/printer/9/indicia_printers **/
  if ($printer_id > 0 && strpos($request, 'indicia_printers') !== false ) { //found it
     $query = "SELECT ip.`id`, ip.`name` FROM " . $DBName . ".gcd_indicia_printer ip
-    INNER JOIN gcdprod.gcd_printer pr ON pr.`id` = ip.`parent_id`
+    INNER JOIN " . $DBName . ".gcd_printer pr ON pr.`id` = ip.`parent_id`
     WHERE ip.`parent_id` = ?";
 } else {
     $query = "SELECT * FROM " . $DBName . ".gcd_printer WHERE id = ?";
@@ -50,6 +50,14 @@ if ($printer_id > 0) {
 if (sizeof($printer) == 0) {
     $printer = array(
         'error' => '(message 2) printer not found'
+    );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
     );
 } elseif (sizeof($printer) == 1) {
     $printer = $printer[0];

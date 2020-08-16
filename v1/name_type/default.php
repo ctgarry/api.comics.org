@@ -23,6 +23,10 @@ if (sizeof($name_type) == 0) {
     $name_type = array(
         'error' => '(message 2) name_type not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($name_type) == 1) {
     $name_type = $name_type[0];
 }

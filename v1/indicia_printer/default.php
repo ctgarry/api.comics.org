@@ -44,6 +44,14 @@ if (sizeof($indicia_printer) == 0) {
     $indicia_printer = array(
         'error' => '(message 2) indicia_printer not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) no results'
+    );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($indicia_printer) == 1) {
     $indicia_printer = $indicia_printer[0];
 }

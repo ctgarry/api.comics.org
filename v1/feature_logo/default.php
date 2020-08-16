@@ -23,6 +23,10 @@ if (sizeof($feature_logo) == 0) {
     $feature_logo = array(
         'error' => '(message 2) feature_logo not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($feature_logo) == 1) {
     $feature_logo = $feature_logo[0];
 }

@@ -61,6 +61,10 @@ if (sizeof($creator) == 0) {
     $creator = array(
         'error' => '(message 2) creator not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($creator) == 1) {
     $creator = $creator[0];
 }

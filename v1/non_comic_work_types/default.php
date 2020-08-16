@@ -15,6 +15,10 @@ if (sizeof($non_comic_work_types) == 0) {
     $non_comic_work_types = array(
         'error' => '(message 2) non_comic_work_types not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($non_comic_work_types) == 1) {
     $non_comic_work_types = $non_comic_work_types[0];
 }

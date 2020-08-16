@@ -23,6 +23,10 @@ if (sizeof($indicia_publisher) == 0) {
     $indicia_publisher = array(
         'error' => '(message 2) indicia_publisher not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($indicia_publisher) == 1) {
     $indicia_publisher = $indicia_publisher[0];
 }

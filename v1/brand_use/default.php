@@ -23,6 +23,10 @@ if (sizeof($brand_use) == 0) {
     $brand_use = array(
         'error' => '(message 2) brand_use not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($brand_use) == 1) {
     $brand_use = $brand_use[0];
 }

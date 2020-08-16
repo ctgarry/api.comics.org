@@ -15,6 +15,10 @@ if (sizeof($degrees) == 0) {
     $degrees = array(
         'error' => '(message 2) degrees not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($degrees) == 1) {
     $degrees = $degrees[0];
 }

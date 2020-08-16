@@ -23,6 +23,10 @@ if (sizeof($language) == 0) {
     $language = array(
         'error' => '(message 2) language not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($language) == 1) {
     $language = $language[0];
 }

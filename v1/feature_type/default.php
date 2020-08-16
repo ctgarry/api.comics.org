@@ -23,6 +23,10 @@ if (sizeof($feature_type) == 0) {
     $feature_type = array(
         'error' => '(message 2) feature_type not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($feature_type) == 1) {
     $feature_type = $feature_type[0];
 }

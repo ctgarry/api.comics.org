@@ -23,6 +23,10 @@ if (sizeof($feature_relation_type) == 0) {
     $feature_relation_type = array(
         'error' => '(message 2) feature_relation_type not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($feature_relation_type) == 1) {
     $feature_relation_type = $feature_relation_type[0];
 }

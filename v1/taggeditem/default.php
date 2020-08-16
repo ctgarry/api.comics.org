@@ -20,6 +20,10 @@ if (sizeof($taggeditem) == 0) {
     $taggeditem = array(
         'error' => '(message 2) taggeditem not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($taggeditem) == 1) {
     $taggeditem = $taggeditem[0];
 }

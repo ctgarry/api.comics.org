@@ -23,6 +23,10 @@ if (sizeof($creator_school) == 0) {
     $creator_school = array(
         'error' => '(message 2) creator_school not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($creator_school) == 1) {
     $creator_school = $creator_school[0];
 }

@@ -23,6 +23,10 @@ if (sizeof($brand_emblem) == 0) {
     $brand_emblem = array(
         'error' => '(message 2) brand_emblem not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($brand_emblem) == 1) {
     $brand_emblem = $brand_emblem[0];
 }

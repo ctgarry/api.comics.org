@@ -15,6 +15,10 @@ if (sizeof($feature_types) == 0) {
     $feature_types = array(
         'error' => '(message 2) feature_types not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($feature_types) == 1) {
     $feature_types = $feature_types[0];
 }

@@ -23,6 +23,10 @@ if (sizeof($received_award) == 0) {
     $received_award = array(
         'error' => '(message 2) received_award not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($received_award) == 1) {
     $received_award = $received_award[0];
 }

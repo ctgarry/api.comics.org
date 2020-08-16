@@ -15,6 +15,10 @@ if (sizeof($name_types) == 0) {
     $name_types = array(
         'error' => '(message 2) name_types not found'
     );
+} elseif (is_null($issue[0])) {
+    $issue = array(
+        'error' => '(message 3) sql prepare failed'
+    );
 } elseif (sizeof($name_types) == 1) {
     $name_types = $name_types[0];
 }
