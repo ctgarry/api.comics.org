@@ -30,7 +30,7 @@
                 <table border=1>
                     <tr>
                         <td colspan=4>
-                            <h3>Publisher</h3>
+                            <h3>Publisher</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>
@@ -72,7 +72,7 @@
                     </tr>
                     <tr>
                         <td colspan=4>
-                            <h3>Series</h3>
+                            <h3>Series</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>
@@ -123,7 +123,7 @@
                     </tr>
                     <tr>
                         <td colspan=4>
-                            <h3>Issues</h3>
+                            <h3>Issues</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>
@@ -139,6 +139,13 @@
                                     src="images/r/gcd.png" /></a>
                         </td>
                         <td>gcd_issue</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td>└─<a target="api" href="v1/issue/114119/indicia_printer">/v1/issue/114119/indicia_printer</a></td>
+                        <td>(printer)</a>
+                        </td>
+                        <td>gcd_issue_indicia_printer, gcd_indicia_printer</td>
                     </tr>
                     <tr>
                         <td>GET</td>
@@ -192,7 +199,52 @@
                     </tr>
                     <tr>
                         <td colspan=4>
-                            <h3>Brands</h3>
+                            <h3>Printers</h3><!-- #################### -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Verb</b></td>
+                        <td><b>Example</b></td>
+                        <td><b>Equivalent</b></td>
+                        <td><b>Tables</b></td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td><a target="api" href="v1/printer/9">/v1/printer/9</a></td>
+                        <td><a target="gcd" href="https://www.comics.org/printer/9"><img class=myB
+                                    src="images/r/gcd.png" /></a></td>
+                        <td>gcd_printer</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td>└─<a target="api" href="v1/printer/9/indicia_printers">/v1/printer/9/indicia_printers</a></td>
+                        <td>(indicia printers)</td>
+                        <td>gcd_printer, gcd_indicia_printer</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td>└─<a target="api" href="v1/printer/?name=hemmets&page=1">/v1/printer/?name=hemmets&page=1</a></td>
+                        <td><a target="gcd" href="https://www.comics.org/searchNew/?q=hemmets&search_object=printer"><img class=myB
+                                    src="images/r/gcd.png" /></a></td>
+                        <td>gcd_printer</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td><a target="api" href="v1/indicia_printer/8">/v1/indicia_printer/8</a></td>
+                        <td><a target="gcd" href="https://www.comics.org/indicia_printer/8"><img class=myB
+                                    src="images/r/gcd.png" /></a></td>
+                        <td>gcd_indicia_printer</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td>└─<a target="api" href="v1/indicia_printer/?name=egmont&page=1">/v1/indicia_printer/?name=egmonts&page=1</a></td>
+                        <td><!--a target="gcd" href="https://www.comics.org/searchNew/?q=egmont&search_object=indicia_printer"><img class=myB
+                                    src="images/r/gcd.png" /></a-->-</td>
+                        <td>gcd_indicia_printer</td>
+                    </tr>
+                    <tr>
+                        <td colspan=4>
+                            <h3>Brands</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>
@@ -240,7 +292,7 @@
                     </tr>
                     <tr>
                         <td colspan=4>
-                            <h3>Brand-Related Items</h3>
+                            <h3>Brand-Related Items</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>
@@ -258,7 +310,7 @@
                     </tr>
                     <tr>
                         <td colspan=4>
-                            <h3>Stories</h3>
+                            <h3>Stories</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>
@@ -280,6 +332,12 @@
                         <td>└─<!--a target="api" href="v1/story/2782805/credits"-->/v1/story/2782805/credits</a></td>
                         <td>(creator object credits)</a>
                         <td>gcd_story_credit</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td>└─<!--a target="api" href="v1/story/2782805/abstract"-->/v1/story/2782805/abstract</a></td>
+                        <td>(story abstract)</a>
+                        <td>gcd_biblio_entry</td>
                     </tr>
                     <tr>
                         <td>GET</td>
@@ -330,7 +388,7 @@
                     -->
                     <tr>
                         <td colspan=4>
-                            <h3>Creators</h3>
+                            <h3>Creators</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>
@@ -373,6 +431,12 @@
                     </tr>
                     <tr>
                         <td>GET</td>
+                        <td>└─<!--a target="api" href="v1/creator/65/signatures"-->/v1/creator/65/signatures</a></td>
+                        <td>(Signatures)</td>
+                        <td>gcd_creator_signature</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
                         <td>└─<!--a target="api" href="v1/creator/11642/awards"-->/v1/creator/11642/awards</a></td>
                         <td>(Awards)</td>
                         <td>gcd_received_award</td>
@@ -406,13 +470,13 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/creator/11642/relation"-->/v1/creator/11642/relation</a></td>
+                        <td>└─<a target="api" href="v1/creator/11642/relations">/v1/creator/11642/relations</a></td>
                         <td>(Relations)</td>
-                        <td>gcd_creator_relation</td>
+                        <td>gcd_creator_relation; gcd_creator_relation_creator_name</td>
                     </tr>
                     <tr>
                         <td colspan=4>
-                            <h3>Creator-Related Items</h3>
+                            <h3>Creator-Related Items</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>
@@ -443,8 +507,15 @@
                         <td>gcd_received_award</td>
                     </tr>
                     <tr>
+                        <td>GET</td>
+                        <td><a target="api" href="v1/creator_signature/2857">/v1/creator_signature/2857</a></td>
+                        <td><a target="gcd" href="https://www.comics.org/creator_signature/2857/"><img class=myB
+                                    src="images/r/gcd.png" /></a>
+                            <td>gcd_creator_signature</td>
+                    </tr>
+                    <tr>
                         <td colspan=4>
-                            <h3>Features</h3>
+                            <h3>Features</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>
@@ -470,7 +541,7 @@
                         <td>GET</td>
                         <td>└─<a!-- target="api" href="v1/feature/98/feature_relations"-->/v1/feature/98/feature_relations</a></td>
                         <td>(Feature Relations)</td>
-                        <td>gcd_feature_2_feature</td>
+                        <td>gcd_feature_relation</td>
                     </tr>
                     <tr>
                         <td>GET</td>
@@ -479,7 +550,7 @@
                     </tr>
                     <tr>
                         <td colspan=4>
-                            <h3>Feature Logos</h3>
+                            <h3>Feature Logos</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>
@@ -512,7 +583,7 @@
                 <table border=1>
                     <tr>
                         <td colspan=4>
-                            <h3>supporting tables</h3>
+                            <h3>supporting tables</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>
@@ -553,6 +624,18 @@
                     </tr>
                     <tr>
                         <td>GET</td>
+                        <td><a target="api" href="v1/scripts/">/v1/scripts</a></td>
+                        <td>(84 written scripts)</td>
+                        <td>stddata_script</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td>└─<a target="api" href="v1/script/37">/v1/script/37</a></td>
+                        <td>by id</td>
+                        <td>stddata_script</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
                         <td><a target="api" href="v1/date/6">/v1/date/6</a></td>
                         <td>(250k+)</td>
                         <td>stddata_date</td>
@@ -575,7 +658,7 @@
                 <table border=1>
                     <tr>
                         <td colspan=4>
-                            <h3>types</h3>
+                            <h3>types</h3><!-- #################### -->
                         </td>
                     </tr>
                     <tr>

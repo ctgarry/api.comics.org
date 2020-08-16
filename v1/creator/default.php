@@ -11,8 +11,18 @@ $params = array( $creator_id );
 
 /** Set query and update params as needed **/
 $request = $_SERVER['REQUEST_URI'];
-if ($issue_id > 0 && strpos($request, 'names') !== false ) { //found it
-	$query = "SELECT * FROM " . $DBName . ".gcd_creator WHERE id = ?";  //  IN PROGRESS !!!
+if ($creator_id > 0 && strpos($request, 'relations') !== false ) { //found it
+    $query = "SELECT cr.id AS creator_relation_id, rt.`type` AS relation_type_type, 
+            cr.to_creator_id,c.gcd_official_name AS to_creator_name,
+            dt.`year` AS to_creator_birth_year, cr.notes AS creator_relation_notes,
+            cnd.id AS using_creator_name_detail_id, cnd.`name` AS using_creator_name_detail_name
+        FROM " . $DBName . ".gcd_creator_relation cr
+        INNER JOIN " . $DBName . ".gcd_relation_type rt ON rt.id = cr.relation_type_id
+        LEFT JOIN " . $DBName . ".gcd_creator c ON c.id = cr.to_creator_id
+        LEFT JOIN " . $DBName . ".stddata_date dt ON dt.id = c.birth_date_id
+        LEFT JOIN " . $DBName . ".gcd_creator_relation_creator_name crcn ON crcn.creatorrelation_id = cr.id
+        LEFT JOIN " . $DBName . ".gcd_creator_name_detail cnd ON cnd.id = crcn.creatornamedetail_id
+        WHERE cr.from_creator_id = ?";
 } else {
 	$query = "SELECT * FROM " . $DBName . ".gcd_creator WHERE id = ?";
 };

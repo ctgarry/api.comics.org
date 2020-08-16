@@ -11,8 +11,10 @@ $params = array( $issue_id );
 
 /** Set query and update params as needed **/
 $request = $_SERVER['REQUEST_URI'];
-if ($issue_id > 0 && strpos($request, 'issue_reprints') !== false ) { //found it
-	$query = "SELECT * FROM " . $DBName . ".gcd_issue WHERE id = ?";  //  IN PROGRESS !!!
+if ($issue_id > 0 && strpos($request, 'indicia_printer') !== false ) { //found it
+    $query = "SELECT ip.`id`, ip.`name` FROM " . $DBName . ".gcd_issue_indicia_printer iip
+        INNER JOIN gcdprod.gcd_indicia_printer ip ON iip.`indiciaprinter_id` = ip.`id`
+        WHERE iip.`issue_id` = ?";
 } else {
 	$query = "SELECT * FROM " . $DBName . ".gcd_issue WHERE id = ?";
 };
