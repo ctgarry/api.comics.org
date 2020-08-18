@@ -62,7 +62,7 @@ function getData( $conn, $query, $params='', $params_types='' ) {
 
     } else {
         $getData = array(
-            'error' => 'params "' . $params . '" not found (message 1)'
+            'error' => 'params not found (message 1)'
         );
     };
 

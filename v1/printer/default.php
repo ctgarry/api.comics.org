@@ -36,22 +36,26 @@ if ( 0 < $param_id ) {
     $results_array = getData( $mysqli, $query, $params, $params_types );
     if ( $contains_json_as_subquery ) {
         foreach ( $results_array as $key => &$val ) {
-            foreach ( $val as $key1 => &$val1 ) {
-                if ( "_json" == substr( $key1,-5 ) ) {
-                    $val[$key1] = json_decode( $val1 );
+            if ( !is_null( $val ) ) {
+                foreach ( $val as $key1 => &$val1 ) {
+                    if ( "_json" == substr( $key1,-5 ) ) {
+                        $val[$key1] = json_decode( $val1 );
+                    }
                 }
             }
         }
     }
 }
 
-/******
+/****** 
  * Display **/
 if ( 0 == sizeof( $results_array ) ) {
     $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( !isset( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'result is not set ( message 3 )' );
 } elseif ( is_null( $results_array[0] ) ) {
-    $results_array = array( 'error' => 'null ( message 3 )' );
-} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => 'result is null ( message 4 )' );
+} elseif ( 1 === sizeof( $results_array ) ) {
     $results_array = $results_array[0];
 }
 

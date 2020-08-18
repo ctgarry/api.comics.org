@@ -16,9 +16,11 @@ $results_array = getData( $mysqli, $query );
  * Display **/
 if ( 0 == sizeof( $results_array ) ) {
     $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( !isset( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'result is not set ( message 3 )' );
 } elseif ( is_null( $results_array[0] ) ) {
-    $results_array = array( 'error' => 'null ( message 3 )' );
-} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => 'result is null ( message 4 )' );
+} elseif ( 1 === sizeof( $results_array ) ) {
     $results_array = $results_array[0];
 }
 
