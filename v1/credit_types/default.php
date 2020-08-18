@@ -1,28 +1,27 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
+$method = "credit_types";
+$table = $DBName . ".gcd_credit_type";
 
-/** Get params **/
-$credit_types = array(); // OUT
+/****** 
+ * Get params and default query **/
+$results_array = array(); // OUT
+$query = "SELECT * FROM " . $table;
 
-/** Set query **/
-$query = "SELECT * FROM " . $DBName . ".gcd_credit_type";
+/****** 
+ * Fetch data **/
+$results_array = getData( $mysqli, $query );
 
-/** Fetch data **/
-$credit_types = getData( $mysqli, $query );
-
-/** Display **/
-if (sizeof($credit_types) == 0) {
-    $credit_types = array(
-        'error' => '(message 2) credit_types not found'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (sizeof($credit_types) == 1) {
-    $credit_types = $credit_types[0];
+/****** 
+ * Display **/
+if ( 0 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( is_null( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'null ( message 3 )' );
+} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = $results_array[0];
 }
 
-echo json_encode($credit_types);
+echo json_encode( $results_array );
 
 ?>

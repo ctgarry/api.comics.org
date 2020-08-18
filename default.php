@@ -445,7 +445,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/creator/11642/relations">/v1/creator/11642/relations</a></td>
+                        <td>└─<a target="api" href="v1/creator/14078/relations">/v1/creator/14078/relations</a></td>
                         <td>(Relations)</td>
                         <td>gcd_creator_relation; gcd_creator_relation_creator_name</td>
                     </tr>
@@ -855,6 +855,10 @@
     --header 'x-gcd-countryCode: US' \
     --header 'accept: application/json' \
     --header 'name: action'
+
+    if (false) {print_r($results_array);} 
+    if (false) {var_dump($results_array);}
+    if (false) {echo "{'\$query': " . json_encode($query) . "}," . PHP_EOL;}
 
  * REFERENCES
  * 

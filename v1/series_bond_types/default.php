@@ -1,28 +1,27 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
+$method = "series_bond_types";
+$table = $DBName . ".gcd_series_bond_type";
 
-/** Get params **/
-$series_bond_types = array(); // OUT
+/****** 
+ * Get params and default query **/
+$results_array = array(); // OUT
+$query = "SELECT * FROM " . $table;
 
-/** Set query **/
-$query = "SELECT * FROM " . $DBName . ".gcd_series_bond_type";
+/****** 
+ * Fetch data **/
+$results_array = getData( $mysqli, $query );
 
-/** Fetch data **/
-$series_bond_types = getData( $mysqli, $query );
-
-/** Display **/
-if (sizeof($series_bond_types) == 0) {
-    $series_bond_types = array(
-        'error' => '(message 2) series_bond_types not found'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (sizeof($series_bond_types) == 1) {
-    $series_bond_types = $series_bond_types[0];
+/****** 
+ * Display **/
+if ( 0 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( is_null( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'null ( message 3 )' );
+} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = $results_array[0];
 }
 
-echo json_encode($series_bond_types);
+echo json_encode( $results_array );
 
 ?>

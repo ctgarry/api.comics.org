@@ -1,36 +1,33 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
+$method = "brand_use";
+$table = $DBName . ".gcd_brand_use";
 
-/** Get params **/
-$brand_use_id = getRequest( $path, "brand_use" ); // IN
-if ($brand_use_id < 1) $brand_use_id = 0;
-$brand_use = array(); // OUT
-
+/******
+ * Get params and default query **/
+$param_id = getRequest( $path, $method ); // IN
+if ( 1 > $param_id ) $param_id = 0;
+$results_array = array(); // OUT
 $params_types = 'i';
-$params = array( $brand_use_id );
+$params = array( $param_id );
+$query = "SELECT * FROM " . $table . " WHERE id = ? ";
 
-/** Set query **/
-$query = "SELECT * FROM " . $DBName . ".gcd_brand_use WHERE id = ?";
-if (false) {echo "{'\$query': " . json_encode($query) . "}," . PHP_EOL;}
-
-/** Fetch data **/
-if ($brand_use_id > 0) {
-    $brand_use = getData( $mysqli, $query, $params, $params_types );
+/******
+ * Fetch data **/
+if ( 0 < $param_id ) {
+    $results_array = getData( $mysqli, $query, $params, $params_types );
 }
 
-/** Display **/
-if (sizeof($brand_use) == 0) {
-    $brand_use = array(
-        'error' => '(message 2) brand_use not found'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (sizeof($brand_use) == 1) {
-    $brand_use = $brand_use[0];
+/****** 
+ * Display **/
+if ( 0 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( is_null( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'null ( message 3 )' );
+} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = $results_array[0];
 }
 
-echo json_encode($brand_use);
+echo json_encode( $results_array );
 
 ?>

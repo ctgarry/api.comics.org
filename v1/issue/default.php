@@ -1,67 +1,61 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
+require_once dirname(dirname(__DIR__)) . '/inc/queries.php';
+$method = "issue";
+$table = $DBName . ".gcd_issue";
 
-/** Get params **/
-$issue_id = getRequest( $path, "issue" ); // IN
-if ($issue_id < 1) $issue_id = 0;
-$issue = array(); // OUT
-
+/****** 
+ * Get params and default query **/
+$param_id = getRequest( $path, $method ); // IN
+if ( 1 > $param_id ) $param_id = 0;
+$results_array = array(); // OUT
 $params_types = 'i';
-$params = array( $issue_id );
+$params = array( $param_id );
+$query = "SELECT * FROM " . $table . " WHERE id = ?";
 
-/** Set query and update params as needed **/
-$request = $_SERVER['REQUEST_URI'];
-if ($issue_id > 0 && strpos($request, 'indicia_printer') !== false ) { //found it
-    $query = "SELECT ip.`id`, ip.`name` FROM " . $DBName . ".gcd_issue_indicia_printer iip
-        INNER JOIN " . $DBName . ".gcd_indicia_printer ip ON iip.`indiciaprinter_id` = ip.`id`
-        WHERE iip.`issue_id` = ?";
-} elseif ($issue_id > 0 && strpos($request, 'issue_reprints') !== false ) { //found it
-    $query = "SELECT ir.id, ir.origin_issue_id, ir.target_issue_id, 
-            ir.notes, ir.reserved,
-            \"Parts of this issue are reprinted in another issue\" AS description_custom
-        FROM " . $DBName . ".gcd_issue_reprint ir 
-        WHERE ir.origin_issue_id = ?";
-} elseif ($issue_id > 0 && strpos($request, 'reprints_from_issue') !== false ) { //found it
-    $query = "SELECT rfi.id, rfi.origin_issue_id, stTo.issue_id AS to_issue, rfi.target_id,
-            rfi.notes, rfi.reserved,
-            \"Parts of this issue are reprinted to a specific STORY\" AS description_custom
-        FROM " . $DBName . ".gcd_reprint_from_issue rfi 
-        INNER JOIN " . $DBName . ".gcd_story stTo ON stTo.id = rfi.target_id
-        WHERE rfi.origin_issue_id = ?";
-} elseif ($issue_id > 0 && strpos($request, 'reprints_to_issue') !== false ) { //found it
-    $query = "SELECT rti.id, rti.origin_id, stFrom.issue_id AS from_issue, rti.target_issue_id,
-            rti.notes, rti.reserved,
-            \"Parts of this issue are reprinted from a specific story\" AS description_custom
-        FROM " . $DBName . ".gcd_reprint_to_issue rti 
-        INNER JOIN " . $DBName . ".gcd_story stFrom ON stFrom.id = rti.origin_id
-        WHERE rti.target_issue_id = ? ";
-} else {
-	$query = "SELECT * FROM " . $DBName . ".gcd_issue WHERE id = ?";
-};
-if (false) {echo "{'\$query': " . json_encode($query) . "}," . PHP_EOL;}
+/****** 
+ * CUSTOMIZATIONS need updates and additions */
+if ($issue_id > 0 && strpos($request, 'indicia_printer') !== false ) {
+    $query = get_issue_indicia_printer_sql;
+} // example: /v1/issue/114119/indicia_printer
 
-/** Fetch data **/
-if ($issue_id > 0) {
-    $issue = getData( $mysqli, $query, $params, $params_types );
+if ($issue_id > 0 && strpos($request, 'issue_reprints') !== false ) {
+    $query = get_issue_issue_reprints_sql;
+} // example: /v1/issue/391286/issue_reprints
+
+if ($issue_id > 0 && strpos($request, 'reprints_from_issue') !== false ) {
+    $query = get_issue_reprints_from_issue_sql;
+} // example: /v1/issue/536367/reprints_from_issue
+
+if ($issue_id > 0 && strpos($request, 'reprints_to_issue') !== false ) {
+    $query = get_issue_reprints_to_issue_sql;
+} // example: /v1/issue/636292/reprints_to_issue
+
+/****** 
+ * Fetch data and make any fixes needed **/
+if ( 0 < $param_id ) {
+    $results_array = getData( $mysqli, $query, $params, $params_types );
+    if ( $contains_json_as_subquery ) {
+        foreach ( $results_array as $key => &$val ) {
+            foreach ( $val as $key1 => &$val1 ) {
+                if ( "_json" == substr( $key1,-5 ) ) {
+                    $val[$key1] = json_decode( $val1 );
+                }
+            }
+        }
+    }
 }
 
-/** Display **/
-if (sizeof($issue) == 0) {
-    $issue = array(
-        'error' => '(message 2) issue not found'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (sizeof($issue) == 1) {
-    $issue = $issue[0];
+/****** 
+ * Display **/
+if ( 0 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( is_null( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'null ( message 3 )' );
+} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = $results_array[0];
 }
 
-echo json_encode($issue);
+echo json_encode( $results_array );
 
 ?>

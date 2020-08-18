@@ -1,36 +1,33 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
+$method = "language";
+$table = $DBName . ".stddata_language";
 
-/** Get params **/
-$language_id = getRequest( $path, "language" ); // IN
-if ($language_id < 1) $language_id = 0;
-$language = array(); // OUT
-
+/******
+ * Get params and default query **/
+$param_id = getRequest( $path, $method ); // IN
+if ( 1 > $param_id ) $param_id = 0;
+$results_array = array(); // OUT
 $params_types = 'i';
-$params = array( $language_id );
+$params = array( $param_id );
+$query = "SELECT * FROM " . $table . " WHERE id = ? ";
 
-/** Set query **/
-$query = "SELECT * FROM " . $DBName . ".stddata_language WHERE id = ?";
-if (false) {echo "{'\$query': " . json_encode($query) . "}," . PHP_EOL;}
-
-/** Fetch data **/
-if ($language_id > 0) {
-    $language = getData( $mysqli, $query, $params, $params_types );
+/******
+ * Fetch data **/
+if ( 0 < $param_id ) {
+    $results_array = getData( $mysqli, $query, $params, $params_types );
 }
 
-/** Display **/
-if (sizeof($language) == 0) {
-    $language = array(
-        'error' => '(message 2) language not found'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (sizeof($language) == 1) {
-    $language = $language[0];
+/****** 
+ * Display **/
+if ( 0 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( is_null( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'null ( message 3 )' );
+} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = $results_array[0];
 }
 
-echo json_encode($language);
+echo json_encode( $results_array );
 
 ?>

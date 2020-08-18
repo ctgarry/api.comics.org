@@ -1,25 +1,22 @@
 <?php
 header('Content-Type: application/json;charset=utf-8');
+$request = $_SERVER['REQUEST_URI'];
 
 /********************************************
  ** Environments and data source **/
-if ($_SERVER['HTTP_HOST'] == 'localhost')
-{
+if ($_SERVER['HTTP_HOST'] == 'localhost') {
 	// set include, fix param, and set alternate db
     require_once dirname(dirname(__DIR__)) . '\cgi-bin\inc.database.php';
     $path = '/blackbox/bymonth/api/v1/';
 	$DBName = 'gcdprod';
-}
-else
-{
+} else {
 	// set include, and fix param
     require_once dirname(dirname(__DIR__)) . '/cgi-bin/inc.database.php';
     $path = '/api/v1/';
 }
 
 $mysqli = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
-if (mysqli_connect_errno())
-{
+if (mysqli_connect_errno()) {
     exit('Error connecting to database'); 
 }
 
@@ -28,11 +25,11 @@ if (mysqli_connect_errno())
  **  functions **/
 function getRequest($path, $method, $verbose=false) {
 
-    $request = $_SERVER['REQUEST_URI'];
-	if ($verbose) { echo '{"request": ' . json_encode($request) . '},' . PHP_EOL; }
-    $request = str_replace( $path . $method . '/', '', $request);
-    if ($verbose) { echo '{"corrected request": ' . json_encode($request) . '},' . PHP_EOL; }
-    $getRequest = intval(isset($request) ? $request : 0); 
+    $uri = $_SERVER['REQUEST_URI']; // local
+	if ($verbose) { echo '{"request": ' . json_encode($uri) . '},' . PHP_EOL; }
+    $uri = str_replace( $path . $method . '/', '', $uri);
+    if ($verbose) { echo '{"corrected request": ' . json_encode($uri) . '},' . PHP_EOL; }
+    $getRequest = intval(isset($uri) ? $uri : 0); 
     if ($verbose) { echo '{"'.$method.'_id": ' . json_encode($getRequest) . '},' . PHP_EOL; }
     return $getRequest;
 
@@ -65,7 +62,7 @@ function getData( $conn, $query, $params='', $params_types='' ) {
 
     } else {
         $getData = array(
-            'error' => '(message 1) params not found'
+            'error' => 'params "' . $params . '" not found (message 1)'
         );
     };
 

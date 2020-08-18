@@ -1,28 +1,27 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
+$method = "relation_types";
+$table = $DBName . ".gcd_relation_type";
 
-/** Get params **/
-$relation_types = array(); // OUT
+/****** 
+ * Get params and default query **/
+$results_array = array(); // OUT
+$query = "SELECT * FROM " . $table;
 
-/** Set query **/
-$query = "SELECT * FROM " . $DBName . ".gcd_relation_type";
+/****** 
+ * Fetch data **/
+$results_array = getData( $mysqli, $query );
 
-/** Fetch data **/
-$relation_types = getData( $mysqli, $query );
-
-/** Display **/
-if (sizeof($relation_types) == 0) {
-    $relation_types = array(
-        'error' => '(message 2) relation_types not found'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (sizeof($relation_types) == 1) {
-    $relation_types = $relation_types[0];
+/****** 
+ * Display **/
+if ( 0 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( is_null( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'null ( message 3 )' );
+} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = $results_array[0];
 }
 
-echo json_encode($relation_types);
+echo json_encode( $results_array );
 
 ?>

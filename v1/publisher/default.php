@@ -1,61 +1,60 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
+require_once dirname(dirname(__DIR__)) . '/inc/queries.php';
+$method = "publisher";
+$table = $DBName . ".gcd_publisher";
 
-/** Get params **/
-$publisher_id = getRequest( $path, "publisher" ); // IN
-if ($publisher_id < 1) $publisher_id = 0;
-$publisher = array(); // OUT
-
+/******
+ * Get params and default query **/
+$param_id = getRequest( $path, $method ); // IN
+if ( 1 > $param_id ) $param_id = 0;
+$results_array = array(); // OUT
 $params_types = 'i';
-$params = array( $publisher_id );
+$params = array( $param_id );
+$query = "SELECT * FROM " . $table . " WHERE id = ?";
 
-/** Set query and update params as needed **/
-$request = $_SERVER['REQUEST_URI'];
-if ($publisher_id > 0 && strpos($request, 'brand_groups') !== false ) { //found it
-	$query = "SELECT * FROM " . $DBName . ".gcd_brand_group WHERE parent_id = ?";
-} else {
-	$query = "SELECT * FROM " . $DBName . ".gcd_publisher WHERE id = ?";
-};
-
-/** Search by name 
- * example: /v1/publisher/?name=dc&page=3 **/
-if ( $publisher_id == 0 && strpos($request, 'name') !== false ) { //found it
-
-	$page = intval(isset($_GET['page']) ?$_GET['page'] : 0); if ($page < 1) $page = 1;
-	$count = 25;	
-	$skip = ($page-1) * $count;
-	$param = isset($_GET['name']) ?$_GET['name'] : ""; 
-	$params_types = 'sii';
+/******
+ * Customizations need updates and additions **/
+if ( $param_id == 0 && strpos( $request, 'name' ) !== false ) {
+    $page = intval( isset( $_GET['page'] ) ?$_GET['page'] : 0 ); if ( $page < 1 ) $page = 1;
+    $count = 25;	
+    $skip = ( $page-1 ) * $count;
+    $param = isset( $_GET['name'] ) ?$_GET['name'] : ""; 
+    $params_types = 'sii';
     $params = array( $param, $skip, $count );
-    $query = "SELECT `id`, `name`, `year_began`, `country_id`
-		FROM " . $DBName . ".gcd_publisher WHERE INSTR( `name`, ? ) > 0 
-		ORDER BY `series_count` DESC, `issue_count` DESC, `year_began`
-		LIMIT ?, ?";
+    $query = $get_publisher_by_name_paged_sql;
+    if ( $param == "" || strlen( $param ) < 2 ) { $param_id = 0; } else { $param_id = 1; } 
+} // example: /v1/publisher/?name=dc&page=3
 
-    if ( $param == "" || strlen($param)<2 ) { $publisher_id=0; } else { $publisher_id=1; } 
+if ( $param_id > 0 && strpos( $request, 'brand_groups' ) !== false ) {
+    $query = $get_publisher_brand_groups_sql;
+}; // example: /v1/publisher/54/brand_groups
 
+/******
+ * Fetch data and make any fixes needed **/
+if ( 0 < $param_id ) {
+    $results_array = getData( $mysqli, $query, $params, $params_types );
+    if ( $contains_json_as_subquery ) {
+        foreach ( $results_array as $key => &$val ) {
+            foreach ( $val as $key1 => &$val1 ) {
+                if ( "_json" == substr( $key1,-5 ) ) {
+                    $val[$key1] = json_decode( $val1 );
+                }
+            }
+        }
+    }
 }
 
-if (false) {echo "{'\$query': " . json_encode($query) . "}," . PHP_EOL;}
-
-/** Fetch data **/
-if ($publisher_id > 0) {
-    $publisher = getData( $mysqli, $query, $params, $params_types );
+/******
+ * Display **/
+if ( 0 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( is_null( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'null ( message 3 )' );
+} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = $results_array[0];
 }
 
-/** Display **/
-if (sizeof($publisher) == 0) {
-    $publisher = array(
-        'error' => '(message 2) publisher not found'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (sizeof($publisher) == 1) {
-    $publisher = $publisher[0];
-}
-
-echo json_encode($publisher);
+echo json_encode( $results_array );
 
 ?>

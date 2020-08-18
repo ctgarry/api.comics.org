@@ -1,28 +1,27 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
+$method = "countries";
+$table = $DBName . ".stddata_country";
 
-/** Get params **/
-$countries = array(); // OUT
+/****** 
+ * Get params and default query **/
+$results_array = array(); // OUT
+$query = "SELECT * FROM " . $table;
 
-/** Set query **/
-$query = "SELECT * FROM " . $DBName . ".stddata_country";
+/****** 
+ * Fetch data **/
+$results_array = getData( $mysqli, $query );
 
-/** Fetch data **/
-$countries = getData( $mysqli, $query );
-
-/** Display **/
-if (sizeof($countries) == 0) {
-    $countries = array(
-        'error' => '(message 2) countries not found'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (sizeof($countries) == 1) {
-    $countries = $countries[0];
+/****** 
+ * Display **/
+if ( 0 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( is_null( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'null ( message 3 )' );
+} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = $results_array[0];
 }
 
-echo json_encode($countries);
+echo json_encode( $results_array );
 
 ?>

@@ -1,28 +1,27 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
+$method = "degrees";
+$table = $DBName . ".gcd_degree";
 
-/** Get params **/
-$degrees = array(); // OUT
+/****** 
+ * Get params and default query **/
+$results_array = array(); // OUT
+$query = "SELECT * FROM " . $table;
 
-/** Set query **/
-$query = "SELECT * FROM " . $DBName . ".gcd_degree";
+/****** 
+ * Fetch data **/
+$results_array = getData( $mysqli, $query );
 
-/** Fetch data **/
-$degrees = getData( $mysqli, $query );
-
-/** Display **/
-if (sizeof($degrees) == 0) {
-    $degrees = array(
-        'error' => '(message 2) degrees not found'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (sizeof($degrees) == 1) {
-    $degrees = $degrees[0];
+/****** 
+ * Display **/
+if ( 0 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( is_null( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'null ( message 3 )' );
+} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = $results_array[0];
 }
 
-echo json_encode($degrees);
+echo json_encode( $results_array );
 
 ?>

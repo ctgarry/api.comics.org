@@ -1,36 +1,33 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
+$method = "name_type";
+$table = $DBName . ".gcd_name_type";
 
-/** Get params **/
-$name_type_id = getRequest( $path, "name_type" ); // IN
-if ($name_type_id < 1) $name_type_id = 0;
-$name_type = array(); // OUT
-
+/******
+ * Get params and default query **/
+$param_id = getRequest( $path, $method ); // IN
+if ( 1 > $param_id ) $param_id = 0;
+$results_array = array(); // OUT
 $params_types = 'i';
-$params = array( $name_type_id );
+$params = array( $param_id );
+$query = "SELECT * FROM " . $table . " WHERE id = ? ";
 
-/** Set query **/
-$query = "SELECT * FROM " . $DBName . ".gcd_name_type WHERE id = ?";
-if (false) {echo "{'\$query': " . json_encode($query) . "}," . PHP_EOL;}
-
-/** Fetch data **/
-if ($name_type_id > 0) {
-    $name_type = getData( $mysqli, $query, $params, $params_types );
+/******
+ * Fetch data **/
+if ( 0 < $param_id ) {
+    $results_array = getData( $mysqli, $query, $params, $params_types );
 }
 
-/** Display **/
-if (sizeof($name_type) == 0) {
-    $name_type = array(
-        'error' => '(message 2) name_type not found'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (sizeof($name_type) == 1) {
-    $name_type = $name_type[0];
+/****** 
+ * Display **/
+if ( 0 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( is_null( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'null ( message 3 )' );
+} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = $results_array[0];
 }
 
-echo json_encode($name_type);
+echo json_encode( $results_array );
 
 ?>

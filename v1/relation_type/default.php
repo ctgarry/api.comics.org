@@ -1,38 +1,33 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
+$method = "relation_type";
+$table = $DBName . ".gcd_relation_type";
 
-/** Get params **/
-$relation_type_id = getRequest( $path, "relation_type" ); // IN
-if ($relation_type_id < 1) $relation_type_id = 0;
-$relation_type = array(); // OUT
-
+/******
+ * Get params and default query **/
+$param_id = getRequest( $path, $method ); // IN
+if ( 1 > $param_id ) $param_id = 0;
+$results_array = array(); // OUT
 $params_types = 'i';
-$params = array( $relation_type_id );
+$params = array( $param_id );
+$query = "SELECT * FROM " . $table . " WHERE id = ? ";
 
-/** Set query **/
-$query = "SELECT * FROM " . $DBName . ".gcd_relation_type WHERE id = ?";
-if (false) {echo "{'\$query': " . json_encode($query) . "}," . PHP_EOL;}
-
-/** Fetch data **/
-if ($relation_type_id > 0) {
-    $relation_type = getData( $mysqli, $query, $params, $params_types );
+/******
+ * Fetch data **/
+if ( 0 < $param_id ) {
+    $results_array = getData( $mysqli, $query, $params, $params_types );
 }
 
-/** Display **/
-if (sizeof($relation_type) == 0) {
-    $relation_type = array(
-        'error' => '(message 2) relation_type not found'
-    );
-} elseif (is_null($issue[0])) {
-    $issue = array(
-        'error' => '(message 3) sql prepare failed'
-    );
-} elseif (sizeof($relation_type) == 1) {
-    $relation_type = $relation_type[0];
+/****** 
+ * Display **/
+if ( 0 == sizeof( $results_array ) ) {
+    $results_array = array( 'error' => $method . ' not found ( message 2 )' );
+} elseif ( is_null( $results_array[0] ) ) {
+    $results_array = array( 'error' => 'null ( message 3 )' );
+} elseif ( 1 == sizeof( $results_array ) ) {
+    $results_array = $results_array[0];
 }
 
-echo json_encode($relation_type);
+echo json_encode( $results_array );
 
 ?>
-
-
