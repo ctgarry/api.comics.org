@@ -10,7 +10,7 @@ if ( 1 > $param_id ) $param_id = 0;
 $results_array = array(); // OUT
 $params_types = 'i';
 $params = array( $param_id );
-$query = "SELECT * FROM " . $table . " WHERE id = ? ";
+$query = "SELECT * FROM " . $table . " WHERE id = ? "; // no deleted field
 
 /******
  * Fetch data **/

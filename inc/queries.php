@@ -1,5 +1,106 @@
 <?php
 
+$get_creator_names_sql = "
+    SELECT cnd.`id`, cnd.`is_official_name`, cnd.`name`, nt.`type` AS name_type, 
+        cnd.`family_name`, cnd.`given_name`, sc.`name` AS in_script_name
+    FROM " . $DBName . ".gcd_creator_name_detail cnd
+    INNER JOIN " . $DBName . ".stddata_script sc ON sc.id = cnd.`in_script_id`
+    INNER JOIN " . $DBName . ".gcd_name_type nt ON nt.id = cnd.`type_id`
+    WHERE cnd.`deleted` = 0 AND cnd.`creator_id` = ?
+    ORDER BY cnd.`is_official_name` DESC, cnd.`type_id`";
+
+$get_creator_schools_sql = "
+    SELECT 
+        cs.`id`, s.`school_name` AS `school_name`,
+        cs.`school_year_began`, cs.`school_year_began_uncertain`,
+        cs.`school_year_ended`,	cs.`school_year_ended_uncertain`, cs.`notes`
+    FROM " . $DBName . ".gcd_creator_school cs
+    INNER JOIN " . $DBName . ".gcd_school s ON s.id = cs.`school_id` 
+    WHERE cs.`deleted` = 0 AND cs.`creator_id` = ?
+    ORDER BY school_year_began";
+
+$get_creator_degrees_sql = "
+    SELECT 
+        cd.`id`, d.`degree_name`, s.`school_name`,
+        cd.`degree_year`, cd.`degree_year_uncertain`, cd.`notes`
+    FROM " . $DBName . ".gcd_creator_degree cd
+    INNER JOIN " . $DBName . ".gcd_degree d ON d.id = cd.`degree_id` 
+    INNER JOIN " . $DBName . ".gcd_school s ON s.id = cd.`school_id` 
+    WHERE cd.`deleted` = 0 AND cd.`creator_id` = ?
+    ORDER BY cd.`degree_year`";
+
+$get_creator_signatures_sql = "
+    SELECT cs.`id`, cs.`name`, cs.`generic`, cs.`notes`
+    FROM " . $DBName . ".gcd_creator_signature cs
+    WHERE cs.deleted = 0 AND cs.creator_id = ?
+    ORDER BY cs.`name` ";
+
+$get_creator_awards_sql = "
+    SELECT 
+        ra.`award_id`, a.`name` AS award_name,
+        ra.`id` AS received_award_id, ra.`award_name` AS received_award_name,
+        ra.`no_award_name`, ra.`award_year`, ra.`award_year_uncertain`, ra.`notes`
+    FROM " . $DBName . ".`gcd_received_award` ra
+    LEFT JOIN " . $DBName . ".gcd_award a ON a.id = ra.award_id
+    WHERE ra.`deleted` = 0 AND a.`deleted` = 0 AND ra.object_id = ?
+    ORDER BY ra.`award_year`, ra.`award_name` ";
+
+$get_creator_awards_for_stories_sql = "
+    SELECT * FROM " . $DBName . ".gcd_creator c
+    WHERE c.id = ? ";
+
+$get_creator_art_influences_sql = "
+    SELECT 
+        id, gcd_official_name,
+        ( SELECT CONCAT( '[', GROUP_CONCAT(
+            '{ \"id\": ',cai.`id`, 
+            ', \"name\": \"',IF(IsNull(c.gcd_official_name), cai.`influence_name`, c.gcd_official_name),'\"',
+            ', \"birth_year\": ',d.`year`,
+            ', \"notes\": \"',cai.`notes`, '\"}' ), ']')
+            FROM " . $DBName . ".gcd_creator_art_influence cai
+            LEFT JOIN " . $DBName . ".gcd_creator c ON c.id = cai.influence_link_id
+            LEFT JOIN " . $DBName . ".stddata_date d ON d.id = c.birth_date_id
+            WHERE cai.creator_id = c1.id
+            ORDER BY c.sort_name, cai.influence_name
+        ) AS stated_influences_from_json,
+        ( SELECT CONCAT( '[', GROUP_CONCAT(
+            '{ \"id\": ',cai.`id`, 
+            ', \"name\": \"',IF(IsNull(c.gcd_official_name), cai.`influence_name`, c.gcd_official_name),'\"',
+            ', \"birth_year\": ',d.`year`,
+            ', \"notes\": \"',cai.`notes`, '\"}' ), ']')
+            FROM " . $DBName . ".gcd_creator_art_influence cai
+            LEFT JOIN " . $DBName . ".gcd_creator c ON c.id = cai.creator_id
+            LEFT JOIN " . $DBName . ".stddata_date d ON d.id = c.birth_date_id
+            WHERE cai.influence_link_id = c1.id
+            ORDER BY c.sort_name, cai.influence_name
+        ) AS stated_as_an_influence_by_json
+    FROM " . $DBName . ".gcd_creator c1 WHERE id = ?";
+
+$get_creator_memberships_sql = "
+    SELECT 
+        cm.`id`, cm.`organization_name`, mt.`type` AS membership_type,
+        cm.`membership_year_began`, cm.`membership_year_began_uncertain`,
+        cm.`membership_year_ended`, cm.`membership_year_ended_uncertain`,
+        cm.`notes`
+    FROM " . $DBName . ".gcd_creator_membership cm
+    INNER JOIN " . $DBName . ".gcd_membership_type mt ON mt.id = cm.`membership_type_id`
+    WHERE cm.deleted = 0 AND cm.creator_id = ? ";
+
+$get_creator_non_comic_works_sql = "
+    SELECT 
+    ncw.`id`, ncw.`publication_title`, ncwt.`type`, ncwr.`role_name`,
+    ( SELECT CONCAT( '[', GROUP_CONCAT(`work_year` ORDER BY `work_year`), ']') 
+        FROM " . $DBName . ".gcd_non_comic_work_year 
+        WHERE `non_comic_work_id` = ncw.`id`
+    ) AS years_json, 
+    ncw.`employer_name`, ncw.`work_title`, ncw.`work_urls`, ncw.`notes`
+    FROM " . $DBName . ".gcd_creator_non_comic_work ncw
+    LEFT JOIN " . $DBName . ".gcd_non_comic_work_role ncwr ON ncwr.id = ncw.`work_role_id`
+    LEFT JOIN " . $DBName . ".gcd_non_comic_work_type ncwt ON ncwt.id = ncw.`work_type_id`
+    WHERE ncw.`deleted` = 0 AND ncw.creator_id = ?
+    GROUP BY ncw.`id`
+    ORDER BY ncw.`publication_title`";
+
 $get_creator_relations_sql = "
     SELECT cr.id AS cr_id, cr.from_creator_id AS cr_from_creator_id, 
         c_fr.gcd_official_name AS c_fr_gcd_official_name, 
@@ -44,6 +145,12 @@ $get_creator_by_name_paged_sql = "
     WHERE INSTR( `gcd_official_name`, ? ) > 0 
     GROUP BY  c.id
     ORDER BY COUNT(sc.creator_id) DESC
+    LIMIT ?, ? ";
+
+$get_creator_art_influence_by_name_paged_sql = "
+    SELECT `id`, `influence_name`
+    FROM " . $DBName . ".gcd_creator_art_influence WHERE INSTR( `influence_name`, ? ) > 0 
+    ORDER BY `influence_name`
     LIMIT ?, ? ";
 
 $get_indicia_printer_by_name_paged_sql = "
@@ -99,6 +206,12 @@ $get_publisher_by_name_paged_sql = "
     ORDER BY `series_count` DESC, `issue_count` DESC, `year_began`
     LIMIT ?, ?";
 
+$get_school_by_name_paged_sql = "
+    SELECT `id`, `school_name`
+    FROM " . $DBName . ".gcd_school WHERE INSTR( `school_name`, ? ) > 0 
+    ORDER BY `school_name`
+    LIMIT ?, ? ";
+
 $get_series_by_name_paged_sql = "
     SELECT `id`, `name`, `year_began`, `publisher_id`, `country_id`
     FROM " . $DBName . ".gcd_series WHERE INSTR( `name`, ? ) > 0 
@@ -136,7 +249,6 @@ $get_series_awards_sql = "
     INNER JOIN " . $DBName . ".gcd_award a ON a.id = ra.award_id
     WHERE s.id = ?
     GROUP BY s.id;";
-
 
 $get_series_bonds_sql = "
     (SELECT sb.id, 

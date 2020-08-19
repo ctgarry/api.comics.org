@@ -1,12 +1,12 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
 $method = "series_publication_types";
-$table = $DBName . ".gcd_series_publication_type";
+$table = $DBName . ".gcd_series_publication_type"; 
 
 /****** 
  * Get params and default query **/
 $results_array = array(); // OUT
-$query = "SELECT * FROM " . $table;
+$query = "SELECT * FROM " . $table; // no deleted field
 
 /****** 
  * Fetch data **/

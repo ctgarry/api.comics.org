@@ -1,8 +1,8 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
 require_once dirname(dirname(__DIR__)) . '/inc/queries.php';
-$method = "publisher";
-$table = $DBName . ".gcd_publisher";
+$method = "school";
+$table = $DBName . ".gcd_school";
 
 /******
  * Get params and default query **/
@@ -11,7 +11,7 @@ if ( 1 > $param_id ) $param_id = 0;
 $results_array = array(); // OUT
 $params_types = 'i';
 $params = array( $param_id );
-$query = "SELECT * FROM " . $table . " WHERE deleted = 0 AND id = ?";
+$query = "SELECT * FROM " . $table . " WHERE id = ? "; // no deleted field
 
 /******
  * Customizations need updates and additions **/
@@ -22,13 +22,9 @@ if ( $param_id == 0 && strpos( $request, 'name' ) !== false ) {
     $param = isset( $_GET['name'] ) ?$_GET['name'] : ""; 
     $params_types = 'sii';
     $params = array( $param, $skip, $count );
-    $query = $get_publisher_by_name_paged_sql;
+    $query = $get_school_by_name_paged_sql;
     if ( $param == "" || strlen( $param ) < 2 ) { $param_id = 0; } else { $param_id = 1; } 
-} // example: /v1/publisher/?name=dc&page=3
-
-if ( $param_id > 0 && strpos( $request, 'brand_groups' ) !== false ) {
-    $query = $get_publisher_brand_groups_sql;
-}; // example: /v1/publisher/54/brand_groups
+} // example: /v1/school/?name=missouri&page=1
 
 /******
  * Fetch data and make any fixes needed **/
@@ -47,7 +43,7 @@ if ( 0 < $param_id ) {
     }
 }
 
-/******
+/****** 
  * Display **/
 if ( 0 == sizeof( $results_array ) ) {
     $results_array = array( 'error' => $method . ' not found ( message 2 )' );

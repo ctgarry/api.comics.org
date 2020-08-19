@@ -1,7 +1,7 @@
 <?php
 require_once dirname(dirname(__DIR__)) . '/inc/environment.php';
-$method = "taggeditem";
-$table = $DBName . ".taggit_taggeditem";
+$method = "creator_membership";
+$table = $DBName . ".gcd_creator_membership";
 
 /******
  * Get params and default query **/
@@ -10,7 +10,7 @@ if ( 1 > $param_id ) $param_id = 0;
 $results_array = array(); // OUT
 $params_types = 'i';
 $params = array( $param_id );
-$query = "SELECT * FROM " . $table . " WHERE id = ? "; // no deleted field
+$query = "SELECT * FROM " . $table . " WHERE deleted = 0 AND id = ? ";
 
 /******
  * Fetch data **/

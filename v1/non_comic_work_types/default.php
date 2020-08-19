@@ -6,7 +6,7 @@ $table = $DBName . ".gcd_non_comic_work_type";
 /****** 
  * Get params and default query **/
 $results_array = array(); // OUT
-$query = "SELECT * FROM " . $table;
+$query = "SELECT * FROM " . $table;  // no deleted field
 
 /****** 
  * Fetch data **/

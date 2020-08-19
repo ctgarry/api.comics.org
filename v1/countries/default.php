@@ -6,7 +6,7 @@ $table = $DBName . ".stddata_country";
 /****** 
  * Get params and default query **/
 $results_array = array(); // OUT
-$query = "SELECT * FROM " . $table;
+$query = "SELECT * FROM " . $table; // no deleted field
 
 /****** 
  * Fetch data **/

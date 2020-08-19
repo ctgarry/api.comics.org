@@ -11,7 +11,7 @@ if ( 1 > $param_id ) $param_id = 0;
 $results_array = array(); // OUT
 $params_types = 'i';
 $params = array( $param_id );
-$query = "SELECT * FROM " . $table . " WHERE id = ?";
+$query = "SELECT * FROM " . $table . " WHERE deleted = 0 AND id = ?";
 
 /******
  * Customizations need updates and additions **/
@@ -25,6 +25,44 @@ if ( $param_id == 0 && strpos( $request, 'name' ) !== false ) {
     $query = $get_creator_by_name_paged_sql;
     if ( $param == "" || strlen( $param ) < 2 ) { $param_id = 0; } else { $param_id = 1; } 
 } // example: /v1/creator/?name=simmons&page=2
+
+if ( $param_id > 0 && strpos( $request, 'names' ) !== false ) {
+    $query = $get_creator_names_sql;
+} // example: /v1/creator/14078/names
+
+if ( $param_id > 0 && strpos( $request, 'schools' ) !== false ) {
+    $query = $get_creator_schools_sql;
+} // example: /v1/creator/14078/schools
+
+if ( $param_id > 0 && strpos( $request, 'degrees' ) !== false ) {
+    $query = $get_creator_degrees_sql;
+} // example: /v1/creator/14078/degrees
+
+if ( $param_id > 0 && strpos( $request, 'signatures' ) !== false ) {
+    $query = $get_creator_signatures_sql;
+} // example: /v1/creator/65/signatures
+
+if ( $param_id > 0 && strpos( $request, 'awards' ) !== false ) {
+    $query = $get_creator_awards_sql;
+} // example: /v1/creator/14078/awards
+
+if ( $param_id > 0 && strpos( $request, 'awards_for_stories' ) !== false ) {
+    $query = $get_creator_awards_for_stories_sql;
+} // example: /v1/creator/14078/awards_for_stories
+
+if ( $param_id > 0 && strpos( $request, 'art_influences' ) !== false ) {
+    $query = $get_creator_art_influences_sql;
+    $contains_json_as_subquery = true;
+} // example: /v1/creator/14078/art_influences
+
+if ( $param_id > 0 && strpos( $request, 'memberships' ) !== false ) {
+    $query = $get_creator_memberships_sql;
+} // example: /v1/creator/14078/memberships
+
+if ( $param_id > 0 && strpos( $request, 'non_comic_works' ) !== false ) {
+    $query = $get_creator_non_comic_works_sql;
+    $contains_json_as_subquery = true;
+} // example: /v1/creator/14078/non_comic_works
 
 if ( $param_id > 0 && strpos( $request, 'relations' ) !== false ) {
     $query = $get_creator_relations_sql_56;
