@@ -27,7 +27,7 @@ if ( $param_id == 0 && strpos( $request, 'name' ) !== false ) {
 } // example: /v1/creator/?name=simmons&page=2
 
 if ( $param_id > 0 && strpos( $request, 'relations' ) !== false ) {
-    $query = $get_creator_relations_sql;
+    $query = $get_creator_relations_sql_56;
     $contains_json_as_subquery = true;
 } // example: /v1/creator/14078/relations
 

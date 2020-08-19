@@ -14,7 +14,28 @@ $get_creator_relations_sql = "
     INNER JOIN " . $DBName . ".gcd_relation_type rt ON rt.id = cr.relation_type_id
     LEFT JOIN " . $DBName . ".gcd_creator c_to ON c_to.id = cr.to_creator_id
     LEFT JOIN " . $DBName . ".gcd_creator c_fr ON c_fr.id = cr.from_creator_id
-    WHERE cr.from_creator_id = ? "; // HAS JSON
+    WHERE cr.from_creator_id = ? "; // HAS JSON, not supported in mysql 5.6
+
+$get_creator_relations_sql_56 = "
+    SELECT cr.id AS cr_id, cr.from_creator_id AS cr_from_creator_id, 
+    c_fr.gcd_official_name AS c_fr_gcd_official_name, 
+    rt.`type` AS cr_relation_type_type, cr.to_creator_id AS cr_to_creator_id, 
+    c_to.gcd_official_name AS c_to_gcd_official_name,
+    ( SELECT CONCAT(
+        '[', 
+        GROUP_CONCAT( 
+            '{ \"crcn_id\": ',crcn.id,
+            ', \"cnd_id\": ',cnd.id,
+            ', \"cnd_name\": \"', cnd.`name`, '\"}' ), 
+        ']')
+        FROM " . $DBName . ".gcd_creator_relation_creator_name crcn
+        INNER JOIN " . $DBName . ".gcd_creator_name_detail cnd ON cnd.id = crcn.creatornamedetail_id
+        WHERE crcn.creatorrelation_id = cr.id ) AS using_names_json
+    FROM " . $DBName . ".gcd_creator_relation cr
+    INNER JOIN " . $DBName . ".gcd_relation_type rt ON rt.id = cr.relation_type_id
+    LEFT JOIN " . $DBName . ".gcd_creator c_to ON c_to.id = cr.to_creator_id
+    LEFT JOIN " . $DBName . ".gcd_creator c_fr ON c_fr.id = cr.from_creator_id
+    WHERE cr.from_creator_id = ? ";
 
 $get_creator_by_name_paged_sql = "
     SELECT c.`id`, c.`gcd_official_name`, c.`birth_country_id`
