@@ -42,7 +42,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a class='method' target="api" href="v1/publisher/54/">/v1/publisher/54/</a><br>
+                        <td NOWRAP><a class='method' target="api" href="v1/publisher/54/">/v1/publisher/54/</a><br>
                         &nbsp;&nbsp;└─<a target="api" href="v1/publisher/?name=dc">/v1/publisher/?name=dc&page=1</a></td>
                         <td><a target="gcd" href="https://www.comics.org/publisher/54/"><img class=myB
                                     src="images/r/gcd.png" /></a>
@@ -53,7 +53,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/publisher/54/brand_groups">/v1/publisher/54/brand_groups</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/publisher/54/brand_groups">/v1/publisher/54/brand_groups</a></td>
                         <td><a target="gcd" href="https://www.comics.org/publisher/54/brands"><img class=myB
                                     src="images/r/gcd.png" /></a></td>
                         <td>gcd_brand_group</td>
@@ -61,7 +61,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/indicia_publisher/5">/v1/indicia_publisher/5</a></td>
+                        <td NOWRAP><a target="api" href="v1/indicia_publisher/5">/v1/indicia_publisher/5</a></td>
                         <td><a target="gcd" href="https://www.comics.org/indicia_publisher/5"><img class=myB
                                     src="images/r/gcd.png" /></a></td>
                         <td>gcd_indicia_publisher</td>
@@ -79,7 +79,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a class='method' target="api" href="v1/series/97">/v1/series/97</a><br>
+                        <td NOWRAP><a class='method' target="api" href="v1/series/97">/v1/series/97</a><br>
                         &nbsp;&nbsp;└─<a target="api" href="v1/series/?name=fantastic">/v1/series/?name=fantastic&page=1</a></td>
                         <td><a target="gcd" href="https://www.comics.org/series/97"><img class=myB
                                     src="images/r/gcd.png" /></a>
@@ -90,25 +90,25 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/series/97/brand_emblems">/v1/series/97/brand_emblems</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/series/97/brand_emblems">/v1/series/97/brand_emblems</a></td>
                         <td>(Publisher's Brands)</td>
                         <td>gcd_brand; gcd_issue</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/series/97/indicia_publishers">/v1/series/97/indicia_publishers</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/series/97/indicia_publishers">/v1/series/97/indicia_publishers</a></td>
                         <td>(Indicia Publishers)</td>
                         <td>gcd_indicia_publisher; gcd_issue</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/series/97/awards">/v1/series/97/awards</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/series/97/awards">/v1/series/97/awards</a></td>
                         <td>(Awards)</td>
                         <td>gcd_received_award; gcd_award</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/series/72/bonds">/v1/series/72/bonds</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/series/72/bonds">/v1/series/72/bonds</a></td>
                         <td>(Tracking)</td>
                         <td>gcd_series_bond</td>
                     </tr>
@@ -125,7 +125,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a class='method' target="api" href="v1/issue/7521">/v1/issue/7521</a></td>
+                        <td NOWRAP><a class='method' target="api" href="v1/issue/7521">/v1/issue/7521</a></td>
                         <td><a target="gcd" href="https://www.comics.org/issue/7521"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         </td>
@@ -133,32 +133,32 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/issue/114119/indicia_printer">/v1/issue/114119/indicia_printer</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/issue/114119/indicia_printer">/v1/issue/114119/indicia_printer</a></td>
                         <td>(printer)</a>
                         </td>
                         <td>gcd_issue_indicia_printer, gcd_indicia_printer</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/issue/391286/issue_reprints">/v1/issue/391286/issue_reprints</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/issue/391286/issue_reprints">/v1/issue/391286/issue_reprints</a></td>
                         <td>Parts of this issue are reprinted in another issue</td>
                         <td>gcd_issue_reprint</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/issue/536367/reprints_from_issue">/v1/issue/536367/reprints_from_issue</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/issue/536367/reprints_from_issue">/v1/issue/536367/reprints_from_issue</a></td>
                         <td>Parts of this issue are reprinted TO a specific STORY</td>
                         <td>gcd_reprint_from_issue</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/issue/636292/reprints_to_issue">/v1/issue/636292/reprints_to_issue</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/issue/636292/reprints_to_issue">/v1/issue/636292/reprints_to_issue</a></td>
                         <td>Parts of this issue are reprinted FROM a specific STORY</td>
                         <td>gcd_reprint_to_issue</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/issue/7521/stories"-->/v1/issue/7521/stories</a></td>
+                        <td NOWRAP>└─<!--a target="api" href="v1/issue/7521/stories"-->/v1/issue/7521/stories</a></td>
                         <td>(list of stories)</a>
                         </td>
                         <td>gcd_story</td>
@@ -176,7 +176,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a class='method' target="api" href="v1/printer/9">/v1/printer/9</a><br>
+                        <td NOWRAP><a class='method' target="api" href="v1/printer/9">/v1/printer/9</a><br>
                             &nbsp;&nbsp;└─<a target="api" href="v1/printer/?name=hemmets&page=1">/v1/printer/?name=hemmets&page=1</a></td>
                         <td><a target="gcd" href="https://www.comics.org/printer/9"><img class=myB
                                     src="images/r/gcd.png" /></a>
@@ -186,13 +186,13 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/printer/9/indicia_printers">/v1/printer/9/indicia_printers</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/printer/9/indicia_printers">/v1/printer/9/indicia_printers</a></td>
                         <td>(indicia printers)</td>
                         <td>gcd_printer, gcd_indicia_printer</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a class='method' target="api" href="v1/indicia_printer/8">/v1/indicia_printer/8</a><br>
+                        <td NOWRAP><a class='method' target="api" href="v1/indicia_printer/8">/v1/indicia_printer/8</a><br>
                         &nbsp;&nbsp;└─<a target="api" href="v1/indicia_printer/?name=egmont&page=1">/v1/indicia_printer/?name=egmonts&page=1</a></td>
                         <td><a target="gcd" href="https://www.comics.org/indicia_printer/8"><img class=myB
                                     src="images/r/gcd.png" /></a></td>
@@ -211,21 +211,21 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a class='method' target="api" href="v1/brand_emblem/4">/v1/brand_emblem/4</a></td>
+                        <td NOWRAP><a class='method' target="api" href="v1/brand_emblem/4">/v1/brand_emblem/4</a></td>
                         <td><a target="gcd" href="https://www.comics.org/brand_emblem/4"><img class=myB
                                     src="images/r/gcd.png" /></a></td>
                         <td>gcd_brand</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/brand_emblem/4/groups"-->/v1/brand_emblem/4/groups</a></td>
+                        <td NOWRAP>└─<!--a target="api" href="v1/brand_emblem/4/groups"-->/v1/brand_emblem/4/groups</a></td>
                         <td>(Brand Groups)</td>
                         <td>gcd_brand_emblem_group</td>
                         <!-- gcd_brand_emblem_group WHERE brand_id = 4 -->
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api"
+                        <td NOWRAP>└─<!--a target="api"
                                 href="v1/brand_emblem/4/publisher_brand_uses"-->/v1/brand_emblem/4/publisher_brand_uses</a></td>
                         <td>(At Publishers)</td>
                         <td>gcd_brand_use</td>
@@ -233,14 +233,14 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/brand_group/1563">/v1/brand_group/1563</a></td>
+                        <td NOWRAP><a target="api" href="v1/brand_group/1563">/v1/brand_group/1563</a></td>
                         <td><a target="gcd" href="https://www.comics.org/brand_group/1563"><img class=myB
                                     src="images/r/gcd.png" /></a></td>
                         <td>gcd_brand_group</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/brand_group/1563/brand_use"-->/v1/brand_group/1563/emblem_brand_uses</a>
+                        <td NOWRAP>└─<!--a target="api" href="v1/brand_group/1563/brand_use"-->/v1/brand_group/1563/emblem_brand_uses</a>
                         </td>
                         <td>(Used Brand Emblems)</td>
                         <td>gcd_brand_use</td>
@@ -259,7 +259,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/brand_use/5256">/v1/brand_use/5256</a></td>
+                        <td NOWRAP><a target="api" href="v1/brand_use/5256">/v1/brand_use/5256</a></td>
                         <td>-</td>
                         <td>gcd_brand_use</td>
                         <!-- gcd_brand_use WHERE emblem_id = 4 -->
@@ -277,7 +277,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a class='method' target="api" href="v1/story/2782805">/v1/story/2782805</a></td>
+                        <td NOWRAP><a class='method' target="api" href="v1/story/2782805">/v1/story/2782805</a></td>
                         <td><a target="gcd" href="https://www.comics.org/issue/2041913/#2782805"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         </td>
@@ -285,25 +285,25 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/story/2782805/credits"-->/v1/story/2782805/credits</a></td>
+                        <td NOWRAP>└─<!--a target="api" href="v1/story/2782805/credits"-->/v1/story/2782805/credits</a></td>
                         <td>(creator object credits)</a>
                         <td>gcd_story_credit</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/story/175376/awards"-->/v1/story/175376/awards</a></td>
+                        <td NOWRAP>└─<!--a target="api" href="v1/story/175376/awards"-->/v1/story/175376/awards</a></td>
                         <td>(awards)</a>
                         <td>gcd_received_award</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/story/2782805/abstract"-->/v1/story/2782805/abstract</a></td>
+                        <td NOWRAP>└─<!--a target="api" href="v1/story/2782805/abstract"-->/v1/story/2782805/abstract</a></td>
                         <td>(story abstract)</a>
                         <td>gcd_biblio_entry</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/story/209149/reprints"-->/v1/story/209149/reprints</a></td>
+                        <td NOWRAP>└─<!--a target="api" href="v1/story/209149/reprints"-->/v1/story/209149/reprints</a></td>
                         <td>This story is reprinted as another story</td>
                         <td>gcd_reprint</td>
                     </tr>
@@ -320,7 +320,7 @@
                     -->
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/story/928788/reprints_from_issue"-->/v1/story/928788/reprints_from_issue</a></td>
+                        <td NOWRAP>└─<!--a target="api" href="v1/story/928788/reprints_from_issue"-->/v1/story/928788/reprints_from_issue</a></td>
                         <td>Parts of this issue are reprinted TO a specific STORY</td>
                         <td>gcd_reprint_from_issue</td>
                     </tr>
@@ -335,7 +335,7 @@
                     -->
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/story/506106/reprints_to_issue"-->/v1/story/506106/reprints_to_issue</a></td>
+                        <td NOWRAP>└─<!--a target="api" href="v1/story/506106/reprints_to_issue"-->/v1/story/506106/reprints_to_issue</a></td>
                         <td>Parts of this issue are reprinted FROM a specific STORY</td>
                         <td>gcd_reprint_to_issue</td>
                     </tr>
@@ -361,7 +361,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a class='method' target="api" href="v1/creator/11642">/v1/creator/11642</a><br>
+                        <td NOWRAP><a class='method' target="api" href="v1/creator/11642">/v1/creator/11642</a><br>
                             &nbsp;&nbsp;└─<a target="api" href="v1/creator/?name=davis">/v1/creator/?name=davis&page=1</a></td>
                         <td><a target="gcd" href="https://www.comics.org/creator/11642"><img class=myB
                                     src="images/r/gcd.png" /></a>
@@ -371,62 +371,62 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/creator/11642/names">/v1/creator/11642/names</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/creator/11642/names">/v1/creator/11642/names</a></td>
                         <td>(Names)</td>
                         <td>gcd_creator_name_detail</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/creator/11642/schools">/v1/creator/11642/schools</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/creator/11642/schools">/v1/creator/11642/schools</a></td>
                         <td>(Schools)</td>
                         <td>gcd_creator_school</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/creator/11642/degrees">/v1/creator/11642/degrees</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/creator/11642/degrees">/v1/creator/11642/degrees</a></td>
                         <td>(Degrees)</td>
                         <td>gcd_creator_degree</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/creator/11642/signatures">/v1/creator/11642/signatures</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/creator/11642/signatures">/v1/creator/11642/signatures</a></td>
                         <td>(Signatures)</td>
                         <td>gcd_creator_signature</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/creator/11642/awards">/v1/creator/11642/awards</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/creator/11642/awards">/v1/creator/11642/awards</a></td>
                         <td>(Awards)</td>
                         <td>gcd_received_award</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/creator/11642/awards_for_stories"-->/v1/creator/11642/awards_for_stories</a></td>
+                        <td NOWRAP>└─<!--a target="api" href="v1/creator/11642/awards_for_stories"-->/v1/creator/11642/awards_for_stories</a></td>
                         <td>(Awards for Stories)</td>
                         <td>gcd_received_award</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/creator/11642/art_influences">/v1/creator/11642/art_influences</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/creator/11642/art_influences">/v1/creator/11642/art_influences</a></td>
                         <td>(Art Influences)</td>
                         <td>gcd_creator_art_influence</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/creator/11642/memberships">/v1/creator/11642/memberships</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/creator/11642/memberships">/v1/creator/11642/memberships</a></td>
                         <td>(Memberships)</td>
                         <td>gcd_creator_membership</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/creator/11642/non_comic_works">/v1/creator/11642/non_comic_works</a>
+                        <td NOWRAP>└─<a target="api" href="v1/creator/11642/non_comic_works">/v1/creator/11642/non_comic_works</a>
                         </td>
                         <td>(Non Comics Works)</td>
                         <td>gcd_creator_non_comic_work</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/creator/14078/relations">/v1/creator/14078/relations</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/creator/14078/relations">/v1/creator/14078/relations</a></td>
                         <td>(Relations)</td>
                         <td>gcd_creator_relation; gcd_creator_relation_creator_name</td>
                     </tr>
@@ -443,7 +443,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a class='method' target="api" href="v1/school/445">/v1/school/445</a><br>
+                        <td NOWRAP><a class='method' target="api" href="v1/school/445">/v1/school/445</a><br>
                             &nbsp;&nbsp;└─<a target="api" href="v1/school/?name=missouri&page=1">/v1/school/?name=missouri&page=1</a></td>
                         <td><a target="gcd" href="https://www.comics.org/creator_school/607/"><img class=myB
                                     src="images/r/gcd.png" /></a> 
@@ -451,14 +451,14 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/creator_school/607">/v1/creator_school/607</a></td>
+                        <td NOWRAP><a target="api" href="v1/creator_school/607">/v1/creator_school/607</a></td>
                         <td><a target="gcd" href="https://www.comics.org/creator_school/607/"><img class=myB
                                     src="images/r/gcd.png" /></a> The assignment of a creator to a school
                         <td>gcd_creator_school</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a class='method' target="api" href="v1/award/6">/v1/award/6</a> <br>
+                        <td NOWRAP><a class='method' target="api" href="v1/award/6">/v1/award/6</a> <br>
                         &nbsp;&nbsp;└─/v1/award/?name=hugo&page=1</td>
                         <td><a target="gcd" href="https://www.comics.org/award/6/"><img class=myB
                                     src="images/r/gcd.png" /></a>
@@ -466,28 +466,28 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/received_award/4938">/v1/received_award/4938</a></td>
+                        <td NOWRAP><a target="api" href="v1/received_award/4938">/v1/received_award/4938</a></td>
                         <td><a target="gcd" href="https://www.comics.org/received_award/4938/"><img class=myB
                                     src="images/r/gcd.png" /></a> The assignment of a creator to an award
                         <td>gcd_received_award</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/creator_signature/2857">/v1/creator_signature/2857</a></td>
+                        <td NOWRAP><a target="api" href="v1/creator_signature/2857">/v1/creator_signature/2857</a></td>
                         <td><a target="gcd" href="https://www.comics.org/creator_signature/2857/"><img class=myB
                                     src="images/r/gcd.png" /></a>
                             <td>gcd_creator_signature</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/creator_art_influence/1083">/v1/creator_art_influence/1083</a></td>
+                        <td NOWRAP><a target="api" href="v1/creator_art_influence/1083">/v1/creator_art_influence/1083</a></td>
                         <td><a target="gcd" href="https://www.comics.org/creator_art_influence/1083/"><img class=myB
                                     src="images/r/gcd.png" /></a> 
                         <td>gcd_creator_art_influence</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/creator_membership/139">/v1/creator_membership/139</a></td>
+                        <td NOWRAP><a target="api" href="v1/creator_membership/139">/v1/creator_membership/139</a></td>
                         <td><a target="gcd" href="https://www.comics.org/creator_membership/139/"><img class=myB
                                     src="images/r/gcd.png" /></a> 
                         <td>gcd_creator_membership</td>
@@ -505,7 +505,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a class="method" target="api" href="v1/feature/98/">/v1/feature/98/</a> <br>
+                        <td NOWRAP><a class="method" target="api" href="v1/feature/98/">/v1/feature/98/</a> <br>
                         &nbsp;&nbsp;└─/v1/feature/?name=mickey&page=1</td>
                         <td><a target="gcd" href="https://www.comics.org/feature/98/"><img class=myB
                                     src="images/r/gcd.png" /></a>
@@ -513,13 +513,13 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<!--a target="api" href="v1/feature/98/logos"-->/v1/feature/98/logos</a></td>
+                        <td NOWRAP>└─<!--a target="api" href="v1/feature/98/logos"-->/v1/feature/98/logos</a></td>
                         <td>(Feature Logos)</td>
                         <td>gcd_feature_logo_2_feature</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a!-- target="api" href="v1/feature/98/feature_relations"-->/v1/feature/98/feature_relations</a></td>
+                        <td NOWRAP>└─<a!-- target="api" href="v1/feature/98/feature_relations"-->/v1/feature/98/feature_relations</a></td>
                         <td>(Feature Relations)</td>
                         <td>gcd_feature_relation</td>
                     </tr>
@@ -541,7 +541,7 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/feature_logo/93/">/v1/feature_logo/93/</a> </td>
+                        <td NOWRAP><a target="api" href="v1/feature_logo/93/">/v1/feature_logo/93/</a> </td>
                         <td><a target="gcd" href="https://www.comics.org/feature_logo/93/"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         <td>gcd_feaure_logo</td>
@@ -574,61 +574,61 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>-</td>
+                        <td NOWRAP>-</td>
                         <td>(135 types)</td>
                         <td>django_content_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/countries/">/v1/countries</a></td>
+                        <td NOWRAP><a target="api" href="v1/countries/">/v1/countries</a></td>
                         <td>(269 countries)</td>
                         <td>stddata_country</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/country/225">/v1/country/225</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/country/225">/v1/country/225</a></td>
                         <td>by id</td>
                         <td>stddata_country</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/languages/">/v1/languages</a></td>
+                        <td NOWRAP><a target="api" href="v1/languages/">/v1/languages</a></td>
                         <td>(153 languages)</td>
                         <td>stddata_language</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/language/25">/v1/language/25</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/language/25">/v1/language/25</a></td>
                         <td>by id</td>
                         <td>stddata_language</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/scripts/">/v1/scripts</a></td>
+                        <td NOWRAP><a target="api" href="v1/scripts/">/v1/scripts</a></td>
                         <td>(84 written scripts)</td>
                         <td>stddata_script</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/script/37">/v1/script/37</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/script/37">/v1/script/37</a></td>
                         <td>by id</td>
                         <td>stddata_script</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/date/6">/v1/date/6</a></td>
+                        <td NOWRAP><a target="api" href="v1/date/6">/v1/date/6</a></td>
                         <td>(250k+)</td>
                         <td>stddata_date</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/tag/10">/v1/tag/10</a></td>
+                        <td NOWRAP><a target="api" href="v1/tag/10">/v1/tag/10</a></td>
                         <td>(56k+)</td>
                         <td>taggit_tag</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/taggeditem/7972">/v1/taggeditem/7972</a></td>
+                        <td NOWRAP><a target="api" href="v1/taggeditem/7972">/v1/taggeditem/7972</a></td>
                         <td>(350k+)</td>
                         <td>taggit_taggeditem</td>
                     </tr>
@@ -649,145 +649,145 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/series_publication_types/">/v1/series_publication_types</a></td>
+                        <td NOWRAP><a target="api" href="v1/series_publication_types/">/v1/series_publication_types</a></td>
                         <td>(3 types)</td>
                         <td>gcd_series_publication_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/series_publication_type/1">/v1/series_publication_type/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/series_publication_type/1">/v1/series_publication_type/1</a></td>
                         <td>by id</td>
                         <td>gcd_series_publication_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/series_bond_types/">/v1/series_bond_types</a></td>
+                        <td NOWRAP><a target="api" href="v1/series_bond_types/">/v1/series_bond_types</a></td>
                         <td>(6 types)</td>
                         <td>gcd_series_bond_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/series_bond_type/1">/v1/series_bond_type/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/series_bond_type/1">/v1/series_bond_type/1</a></td>
                         <td>by id</td>
                         <td>gcd_series_bond_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/story_types/">/v1/story_types</a></td>
+                        <td NOWRAP><a target="api" href="v1/story_types/">/v1/story_types</a></td>
                         <td>(28 types)</td>
                         <td>gcd_story_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/story_type/1">/v1/story_type/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/story_type/1">/v1/story_type/1</a></td>
                         <td>by id</td>
                         <td>gcd_story_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/credit_types/">/v1/credit_types</a></td>
+                        <td NOWRAP><a target="api" href="v1/credit_types/">/v1/credit_types</a></td>
                         <td>(13 types)</td>
                         <td>gcd_credit_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/credit_type/1">/v1/credit_type/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/credit_type/1">/v1/credit_type/1</a></td>
                         <td>by id</td>
                         <td>gcd_credit_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/feature_types/">/v1/feature_types</a></td>
+                        <td NOWRAP><a target="api" href="v1/feature_types/">/v1/feature_types</a></td>
                         <td>(3 types)</td>
                         <td>gcd_feature_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/feature_type/1">/v1/feature_type/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/feature_type/1">/v1/feature_type/1</a></td>
                         <td>by id</td>
                         <td>gcd_feature_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/feature_relation_types/">/v1/feature_relation_types</a></td>
+                        <td NOWRAP><a target="api" href="v1/feature_relation_types/">/v1/feature_relation_types</a></td>
                         <td>(1 type)</td>
                         <td>gcd_feature_relation_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/feature_relation_type/1">/v1/feature_relation_type/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/feature_relation_type/1">/v1/feature_relation_type/1</a></td>
                         <td>by id</td>
                         <td>gcd_feature_relation_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/name_types/">/v1/name_types</a></td>
+                        <td NOWRAP><a target="api" href="v1/name_types/">/v1/name_types</a></td>
                         <td>(10 types)</td>
                         <td>gcd_name_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/name_type/1">/v1/name_type/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/name_type/1">/v1/name_type/1</a></td>
                         <td>by id</td>
                         <td>gcd_name_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/degrees/">/v1/degrees</a></td>
+                        <td NOWRAP><a target="api" href="v1/degrees/">/v1/degrees</a></td>
                         <td>(8 degrees)</td>
                         <td>gcd_degree</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/degree/1">/v1/degree/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/degree/1">/v1/degree/1</a></td>
                         <td>by id</td>
                         <td>gcd_degree</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/membership_types/">/v1/membership_types</a></td>
+                        <td NOWRAP><a target="api" href="v1/membership_types/">/v1/membership_types</a></td>
                         <td>(3 types)</td>
                         <td>gcd_membership_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/membership_type/1">/v1/membership_type/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/membership_type/1">/v1/membership_type/1</a></td>
                         <td>by id</td>
                         <td>gcd_membership_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/non_comic_work_types/">/v1/non_comic_work_types</a></td>
+                        <td NOWRAP><a target="api" href="v1/non_comic_work_types/">/v1/non_comic_work_types</a></td>
                         <td>(12 types)</td>
                         <td>gcd_non_comic_work_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/non_comic_work_type/1">/v1/non_comic_work_type/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/non_comic_work_type/1">/v1/non_comic_work_type/1</a></td>
                         <td>by id</td>
                         <td>gcd_non_comic_work_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/non_comic_work_roles/">/v1/non_comic_work_roles</a></td>
+                        <td NOWRAP><a target="api" href="v1/non_comic_work_roles/">/v1/non_comic_work_roles</a></td>
                         <td>(12 roles)</td>
                         <td>gcd_non_comic_work_role</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/non_comic_work_role/1">/v1/non_comic_work_role/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/non_comic_work_role/1">/v1/non_comic_work_role/1</a></td>
                         <td>by id</td>
                         <td>gcd_non_comic_work_role</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td><a target="api" href="v1/relation_types/">/v1/relation_types</a></td>
+                        <td NOWRAP><a target="api" href="v1/relation_types/">/v1/relation_types</a></td>
                         <td>(8 types)</td>
                         <td>gcd_relation_type</td>
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td>└─<a target="api" href="v1/relation_type/1">/v1/relation_type/1</a></td>
+                        <td NOWRAP>└─<a target="api" href="v1/relation_type/1">/v1/relation_type/1</a></td>
                         <td>by id</td>
                         <td>gcd_relation_type</td>
                     </tr>
