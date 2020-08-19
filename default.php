@@ -193,7 +193,7 @@
                     <tr>
                         <td>GET</td>
                         <td NOWRAP><a class='method' target="api" href="v1/indicia_printer/8">/v1/indicia_printer/8</a><br>
-                        &nbsp;&nbsp;└─<a target="api" href="v1/indicia_printer/?name=egmont&page=1">/v1/indicia_printer/?name=egmonts&page=1</a></td>
+                        &nbsp;&nbsp;└─<a target="api" href="v1/indicia_printer/?name=egmont&page=1">/v1/indicia_printer/?name=egmont&page=1</a></td>
                         <td><a target="gcd" href="https://www.comics.org/indicia_printer/8"><img class=myB
                                     src="images/r/gcd.png" /></a></td>
                         <td>gcd_indicia_printer</td>
