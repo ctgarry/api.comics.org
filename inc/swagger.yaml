@@ -51,7 +51,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/publisher'
         '404':
@@ -144,7 +144,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/indicia_publisher'
         '404':
@@ -175,7 +175,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/series'
         '404':
@@ -357,7 +357,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/issue'
         '404':
@@ -386,7 +386,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/indicia_printer'
         '404':
@@ -536,7 +536,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/printer'
         '404':
@@ -629,7 +629,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/indicia_printer'
         '404':
@@ -693,7 +693,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/brand_emblem'
         '404':
@@ -780,7 +780,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/brand_group'
         '404':
@@ -841,7 +841,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/brand_use'
         '404':
@@ -872,7 +872,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/story'
         '404':
@@ -959,7 +959,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/biblio_entry'
         '404':
@@ -1079,7 +1079,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator'
         '404':
@@ -1435,7 +1435,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/school'
         '404':
@@ -1497,7 +1497,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_school'
         '404':
@@ -1526,7 +1526,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/award'
         '404':
@@ -1588,7 +1588,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/received_award'
         '404':
@@ -1617,7 +1617,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_signature'
         '404':
@@ -1647,7 +1647,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_art_influence'
         '404':
@@ -1676,7 +1676,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_membership'
         '404':
@@ -1707,7 +1707,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature'
         '404':
@@ -1830,7 +1830,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature_logo'
         '404':
@@ -1879,7 +1879,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/stddata_country'
         '404':
@@ -1927,7 +1927,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/stddata_language'
         '404':
@@ -1974,7 +1974,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/stddata_script'
         '404':
@@ -2002,7 +2002,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/stddata_date'
         '404':
@@ -2029,7 +2029,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/taggit_tag'
         '404':
@@ -2057,7 +2057,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/taggit_taggeditem'
         '404':
@@ -2105,7 +2105,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/series_publication_type'
         '404':
@@ -2152,7 +2152,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/series_bond_type'
         '404':
@@ -2199,7 +2199,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/story_type'
         '404':
@@ -2246,7 +2246,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/credit_type'
         '404':
@@ -2293,7 +2293,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature_type'
         '404':
@@ -2340,7 +2340,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature_relation_type'
         '404':
@@ -2387,7 +2387,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/name_type'
         '404':
@@ -2434,7 +2434,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/degree'
         '404':
@@ -2481,7 +2481,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/membership_type'
         '404':
@@ -2529,7 +2529,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/non_comic_work_type'
         '404':
@@ -2577,7 +2577,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/non_comic_work_role'
         '404':
@@ -2625,7 +2625,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/relation_type'
         '404':
