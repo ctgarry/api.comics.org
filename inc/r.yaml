@@ -1,0 +1,1382 @@
+components:
+  schemas:
+    award:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        created:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        modified:
+          type: string
+          format: date-time
+        notes:
+          type: string
+      required:
+        - id
+    biblio_entry:
+      type: object
+      properties:
+        story_ptr_id:
+          type: integer
+        page_began:
+          type: integer
+        page_ended:
+          type: integer
+        abstract:
+          type: string
+        doi:
+          type: string
+      required:
+        - id
+    brand_emblem:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        year_began:
+          type: integer
+        year_ended:
+          type: integer
+        notes:
+          type: string
+        url:
+          type: string
+        issue_count:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        year_began_uncertain:
+          type: integer
+        year_ended_uncertain:
+          type: integer
+        year_overall_began:
+          type: integer
+        year_overall_began_uncertain:
+          type: integer
+        year_overall_ended:
+          type: integer
+        year_overall_ended_uncertain:
+          type: integer
+      required:
+        - id
+    brand_emblem_group:
+      type: object
+      properties:
+        id:
+          type: integer
+        brand_id:
+          type: integer
+        brand_group_id:
+          type: integer
+      required:
+        - id
+    brand_group:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        year_began:
+          type: integer
+        year_ended:
+          type: integer
+        year_began_uncertain:
+          type: integer
+        year_ended_uncertain:
+          type: integer
+        notes:
+          type: string
+        url:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        parent_id:
+          type: integer
+        issue_count:
+          type: integer
+        year_overall_began:
+          type: integer
+        year_overall_began_uncertain:
+          type: integer
+        year_overall_ended:
+          type: integer
+        year_overall_ended_uncertain:
+          type: integer
+      required:
+        - id
+    brand_use:
+      type: object
+      properties:
+        id:
+          type: integer
+        publisher_id:
+          type: integer
+        emblem_id:
+          type: integer
+        year_began:
+          type: integer
+        year_ended:
+          type: integer
+        year_began_uncertain:
+          type: integer
+        year_ended_uncertain:
+          type: integer
+        notes:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+      required:
+        - id
+    creator:
+      type: object
+      properties:
+        id:
+          type: integer
+        gcd_official_name:
+          type: string
+        whos_who:
+          type: string
+        birth_country_uncertain:
+          type: integer
+        birth_province:
+          type: string
+        birth_province_uncertain:
+          type: integer
+        birth_city:
+          type: string
+        birth_city_uncertain:
+          type: integer
+        death_country_uncertain:
+          type: integer
+        death_province:
+          type: string
+        death_province_uncertain:
+          type: integer
+        death_city:
+          type: string
+        death_city_uncertain:
+          type: integer
+        bio:
+          type: string
+        notes:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        birth_country_id:
+          type: integer
+        birth_date_id:
+          type: integer
+        death_country_id:
+          type: integer
+        death_date_id:
+          type: integer
+        sort_name:
+          type: string
+      required:
+        - id
+    creator_art_influence:
+      type: object
+      properties:
+        id:
+          type: integer
+        influence_name:
+          type: string
+        notes:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        creator_id:
+          type: integer
+        influence_link_id:
+          type: integer
+      required:
+        - id
+    creator_degree:
+      type: object
+      properties:
+        id:
+          type: integer
+        degree_year:
+          type: integer
+        degree_year_uncertain:
+          type: integer
+        notes:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        creator_id:
+          type: integer
+        degree_id:
+          type: integer
+        school_id:
+          type: integer
+      required:
+        - id
+    creator_membership:
+      type: object
+      properties:
+        id:
+          type: integer
+        organization_name:
+          type: string
+        membership_year_began:
+          type: integer
+        membership_year_began_uncertain:
+          type: integer
+        membership_year_ended:
+          type: integer
+        membership_year_ended_uncertain:
+          type: integer
+        notes:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        creator_id:
+          type: integer
+        membership_type_id:
+          type: integer
+      required:
+        - id
+    creator_name_detail:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        creator_id:
+          type: integer
+        type_id:
+          type: integer
+        sort_name:
+          type: string
+        is_official_name:
+          type: integer
+        in_script_id:
+          type: integer
+        family_name:
+          type: string
+        given_name:
+          type: string
+      required:
+        - id
+    creator_non_comic_work:
+      type: object
+      properties:
+        id:
+          type: integer
+        publication_title:
+          type: string
+        employer_name:
+          type: string
+        work_title:
+          type: string
+        work_urls:
+          type: string
+        notes:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        creator_id:
+          type: integer
+        work_role_id:
+          type: integer
+        work_type_id:
+          type: integer
+      required:
+        - id
+    creator_relation:
+      type: object
+      properties:
+        id:
+          type: integer
+        notes:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        from_creator_id:
+          type: integer
+        relation_type_id:
+          type: integer
+        to_creator_id:
+          type: integer
+      required:
+        - id
+    creator_relation_creator_name:
+      type: object
+      properties:
+        id:
+          type: integer
+        creatorrelation_id:
+          type: integer
+        creatornamedetail_id:
+          type: integer
+      required:
+        - id
+    creator_school:
+      type: object
+      properties:
+        id:
+          type: integer
+        school_year_began:
+          type: integer
+        school_year_began_uncertain:
+          type: integer
+        school_year_ended:
+          type: integer
+        school_year_ended_uncertain:
+          type: integer
+        notes:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        creator_id:
+          type: integer
+        school_id:
+          type: integer
+      required:
+        - id
+    creator_signature:
+      type: object
+      properties:
+        id:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        name:
+          type: string
+        notes:
+          type: string
+        generic:
+          type: integer
+        creator_id:
+          type: integer
+      required:
+        - id
+    credit_type:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        sort_code:
+          type: integer
+      required:
+        - id
+    degree:
+      type: object
+      properties:
+        id:
+          type: integer
+        degree_name:
+          type: string
+      required:
+        - id
+    feature:
+      type: object
+      properties:
+        id:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        name:
+          type: string
+        sort_name:
+          type: string
+        genre:
+          type: string
+        year_created:
+          type: integer
+        year_created_uncertain:
+          type: integer
+        notes:
+          type: string
+        feature_type_id:
+          type: integer
+        language_id:
+          type: integer
+      required:
+        - id
+    feature_logo:
+      type: object
+      properties:
+        id:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        name:
+          type: string
+        sort_name:
+          type: string
+        year_began:
+          type: integer
+        year_ended:
+          type: integer
+        year_began_uncertain:
+          type: integer
+        year_ended_uncertain:
+          type: integer
+        notes:
+          type: string
+      required:
+        - id
+    feature_logo_2_feature:
+      type: object
+      properties:
+        id:
+          type: integer
+        featurelogo_id:
+          type: integer
+        feature_id:
+          type: integer
+      required:
+        - id
+    feature_relation:
+      type: object
+      properties:
+        id:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        notes:
+          type: string
+        from_feature_id:
+          type: integer
+        relation_type_id:
+          type: integer
+        to_feature_id:
+          type: integer
+      required:
+        - id
+    feature_relation_type:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        reverse_description:
+          type: string
+      required:
+        - id
+    feature_type:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      required:
+        - id
+    indicia_printer:
+      type: object
+      properties:
+        id:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        name:
+          type: string
+        year_began:
+          type: integer
+        year_ended:
+          type: integer
+        year_began_uncertain:
+          type: integer
+        year_ended_uncertain:
+          type: integer
+        year_overall_began:
+          type: integer
+        year_overall_ended:
+          type: integer
+        year_overall_began_uncertain:
+          type: integer
+        year_overall_ended_uncertain:
+          type: integer
+        notes:
+          type: string
+        url:
+          type: string
+        issue_count:
+          type: integer
+        country_id:
+          type: integer
+        parent_id:
+          type: integer
+      required:
+        - id
+    indicia_publisher:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        parent_id:
+          type: integer
+        country_id:
+          type: integer
+        year_began:
+          type: integer
+        year_ended:
+          type: integer
+        is_surrogate:
+          type: integer
+        notes:
+          type: string
+        url:
+          type: string
+        issue_count:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        year_began_uncertain:
+          type: integer
+        year_ended_uncertain:
+          type: integer
+        year_overall_began:
+          type: integer
+        year_overall_began_uncertain:
+          type: integer
+        year_overall_ended:
+          type: integer
+        year_overall_ended_uncertain:
+          type: integer
+      required:
+        - id
+    issue:
+      type: object
+      properties:
+        id:
+          type: integer
+        number:
+          type: string
+        volume:
+          type: string
+        no_volume:
+          type: integer
+        display_volume_with_number:
+          type: integer
+        series_id:
+          type: integer
+        indicia_publisher_id:
+          type: integer
+        indicia_pub_not_printed:
+          type: integer
+        brand_id:
+          type: integer
+        no_brand:
+          type: integer
+        publication_date:
+          type: string
+        key_date:
+          type: string
+        sort_code:
+          type: integer
+        price:
+          type: string
+        page_count:
+          type: integer
+        page_count_uncertain:
+          type: integer
+        indicia_frequency:
+          type: string
+        no_indicia_frequency:
+          type: integer
+        editing:
+          type: string
+        no_editing:
+          type: integer
+        notes:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        is_indexed:
+          type: integer
+        isbn:
+          type: string
+        valid_isbn:
+          type: integer
+        no_isbn:
+          type: integer
+        variant_of_id:
+          type: integer
+        variant_name:
+          type: string
+        barcode:
+          type: string
+        no_barcode:
+          type: integer
+        title:
+          type: string
+        no_title:
+          type: integer
+        on_sale_date:
+          type: string
+        on_sale_date_uncertain:
+          type: integer
+        rating:
+          type: string
+        no_rating:
+          type: integer
+        volume_not_printed:
+          type: integer
+        no_indicia_printer:
+          type: integer
+      required:
+        - id
+    issue_credit:
+      type: object
+      properties:
+        id:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        is_credited:
+          type: integer
+        uncertain:
+          type: integer
+        credited_as:
+          type: string
+        credit_name:
+          type: string
+        creator_id:
+          type: integer
+        credit_type_id:
+          type: integer
+        issue_id:
+          type: integer
+      required:
+        - id
+    issue_indicia_printer:
+      type: object
+      properties:
+        id:
+          type: integer
+        issue_id:
+          type: integer
+        indiciaprinter_id:
+          type: integer
+      required:
+        - id
+    issue_reprint:
+      type: object
+      properties:
+        id:
+          type: integer
+        origin_issue_id:
+          type: integer
+        target_issue_id:
+          type: integer
+        notes:
+          type: string
+        reserved:
+          type: integer
+      required:
+        - id
+    membership_type:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+      required:
+        - id
+    name_type:
+      type: object
+      properties:
+        id:
+          type: integer
+        description:
+          type: string
+        type:
+          type: string
+      required:
+        - id
+    non_comic_work_role:
+      type: object
+      properties:
+        id:
+          type: integer
+        role_name:
+          type: string
+      required:
+        - id
+    non_comic_work_type:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+      required:
+        - id
+    non_comic_work_year:
+      type: object
+      properties:
+        id:
+          type: integer
+        work_year:
+          type: integer
+        work_year_uncertain:
+          type: integer
+        non_comic_work_id:
+          type: integer
+      required:
+        - id
+    printer:
+      type: object
+      properties:
+        id:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        name:
+          type: string
+        year_began:
+          type: integer
+        year_ended:
+          type: integer
+        year_began_uncertain:
+          type: integer
+        year_ended_uncertain:
+          type: integer
+        year_overall_began:
+          type: integer
+        year_overall_ended:
+          type: integer
+        year_overall_began_uncertain:
+          type: integer
+        year_overall_ended_uncertain:
+          type: integer
+        notes:
+          type: string
+        url:
+          type: string
+        indicia_printer_count:
+          type: integer
+        issue_count:
+          type: integer
+        country_id:
+          type: integer
+      required:
+        - id
+    publisher:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        country_id:
+          type: integer
+        year_began:
+          type: integer
+        year_ended:
+          type: integer
+        notes:
+          type: string
+        url:
+          type: string
+        brand_count:
+          type: integer
+        indicia_publisher_count:
+          type: integer
+        series_count:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        issue_count:
+          type: integer
+        deleted:
+          type: integer
+        year_began_uncertain:
+          type: integer
+        year_ended_uncertain:
+          type: integer
+        year_overall_began:
+          type: integer
+        year_overall_began_uncertain:
+          type: integer
+        year_overall_ended:
+          type: integer
+        year_overall_ended_uncertain:
+          type: integer
+      required:
+        - id
+    received_award:
+      type: object
+      properties:
+        id:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        object_id:
+          type: integer
+        award_name:
+          type: string
+        no_award_name:
+          type: integer
+        award_year:
+          type: integer
+        award_year_uncertain:
+          type: integer
+        notes:
+          type: string
+        award_id:
+          type: integer
+        content_type_id:
+          type: integer
+      required:
+        - id
+    relation_type:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        reverse_type:
+          type: string
+      required:
+        - id
+    reprint:
+      type: object
+      properties:
+        id:
+          type: integer
+        origin_id:
+          type: integer
+        target_id:
+          type: integer
+        notes:
+          type: string
+        reserved:
+          type: integer
+      required:
+        - id
+    reprint_from_issue:
+      type: object
+      properties:
+        id:
+          type: integer
+        origin_issue_id:
+          type: integer
+        target_id:
+          type: integer
+        notes:
+          type: string
+        reserved:
+          type: integer
+      required:
+        - id
+    reprint_to_issue:
+      type: object
+      properties:
+        id:
+          type: integer
+        origin_id:
+          type: integer
+        target_issue_id:
+          type: integer
+        notes:
+          type: string
+        reserved:
+          type: integer
+      required:
+        - id
+    school:
+      type: object
+      properties:
+        id:
+          type: integer
+        school_name:
+          type: string
+      required:
+        - id
+    series:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        sort_name:
+          type: string
+        format:
+          type: string
+        year_began:
+          type: integer
+        year_began_uncertain:
+          type: integer
+        year_ended:
+          type: integer
+        year_ended_uncertain:
+          type: integer
+        publication_dates:
+          type: string
+        first_issue_id:
+          type: integer
+        last_issue_id:
+          type: integer
+        is_current:
+          type: integer
+        publisher_id:
+          type: integer
+        country_id:
+          type: integer
+        language_id:
+          type: integer
+        tracking_notes:
+          type: string
+        notes:
+          type: string
+        has_gallery:
+          type: integer
+        issue_count:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        has_indicia_frequency:
+          type: integer
+        has_isbn:
+          type: integer
+        has_barcode:
+          type: integer
+        has_issue_title:
+          type: integer
+        has_volume:
+          type: integer
+        is_comics_publication:
+          type: integer
+        color:
+          type: string
+        dimensions:
+          type: string
+        paper_stock:
+          type: string
+        binding:
+          type: string
+        publishing_format:
+          type: string
+        has_rating:
+          type: integer
+        publication_type_id:
+          type: integer
+        is_singleton:
+          type: integer
+        has_about_comics:
+          type: integer
+        has_indicia_printer:
+          type: integer
+      required:
+        - id
+    series_bond:
+      type: object
+      properties:
+        id:
+          type: integer
+        origin_id:
+          type: integer
+        target_id:
+          type: integer
+        origin_issue_id:
+          type: integer
+        target_issue_id:
+          type: integer
+        bond_type_id:
+          type: integer
+        notes:
+          type: string
+        reserved:
+          type: integer
+      required:
+        - id
+    series_bond_type:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        notes:
+          type: string
+      required:
+        - id
+    series_publication_type:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        notes:
+          type: string
+      required:
+        - id
+    story:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        title_inferred:
+          type: integer
+        feature:
+          type: string
+        sequence_number:
+          type: integer
+        page_count:
+          type: integer
+        issue_id:
+          type: integer
+        script:
+          type: string
+        pencils:
+          type: string
+        inks:
+          type: string
+        colors:
+          type: string
+        letters:
+          type: string
+        editing:
+          type: string
+        genre:
+          type: string
+        characters:
+          type: string
+        synopsis:
+          type: string
+        reprint_notes:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        notes:
+          type: string
+        no_script:
+          type: integer
+        no_pencils:
+          type: integer
+        no_inks:
+          type: integer
+        no_colors:
+          type: integer
+        no_letters:
+          type: integer
+        no_editing:
+          type: integer
+        page_count_uncertain:
+          type: integer
+        type_id:
+          type: integer
+        job_number:
+          type: string
+        deleted:
+          type: integer
+        first_line:
+          type: string
+      required:
+        - id
+    story_credit:
+      type: object
+      properties:
+        id:
+          type: integer
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        deleted:
+          type: integer
+        is_credited:
+          type: integer
+        is_signed:
+          type: integer
+        uncertain:
+          type: integer
+        signed_as:
+          type: string
+        credited_as:
+          type: string
+        credit_name:
+          type: string
+        creator_id:
+          type: integer
+        credit_type_id:
+          type: integer
+        story_id:
+          type: integer
+        signature_id:
+          type: integer
+      required:
+        - id
+    story_feature_logo:
+      type: object
+      properties:
+        id:
+          type: integer
+        story_id:
+          type: integer
+        featurelogo_id:
+          type: integer
+      required:
+        - id
+    story_feature_object:
+      type: object
+      properties:
+        id:
+          type: integer
+        story_id:
+          type: integer
+        feature_id:
+          type: integer
+      required:
+        - id
+    story_type:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        sort_code:
+          type: integer
+      required:
+        - id
+    stddata_country:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+    stddata_date:
+      type: object
+      properties:
+        id:
+          type: integer
+        year:
+          type: string
+        month:
+          type: string
+        day:
+          type: string
+        year_uncertain:
+          type: integer
+        month_uncertain:
+          type: integer
+        day_uncertain:
+          type: integer
+      required:
+        - id
+    stddata_language:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+        native_name:
+          type: string
+      required:
+        - id
+    stddata_script:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        number:
+          type: integer
+        name:
+          type: string
+      required:
+        - id
+    taggit_tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+      required:
+        - id
+    taggit_taggeditem:
+      type: object
+      properties:
+        id:
+          type: integer
+        tag_id:
+          type: string
+        object_id:
+          type: integer
+        content_type_id:
+          type: integer
+      required:
+        - id

@@ -1,0 +1,2633 @@
+openapi: 3.0.3
+
+info:
+  title: Comics Database API
+  description: >-
+    Comiccover.org hosts an API prototype that exposes the latest data sourced
+    from the Grand Comics Database. This API exposes millions of records created
+    there over the last 25 years.
+  termsOfService: 'https://www.comiccover.org/api/default.php'
+  contact:
+    name: API Support
+    url: 'https://www.comiccover.org/api/default.php'
+    email: ctgarry@comiccover.com
+  license:
+    name: >-
+      Creative Commons Attribution-ShareAlike 4.0 International License (CC
+      BY-SA 4.0)
+    url: 'https://creativecommons.org/licenses/by-sa/4.0/'
+  version: 1-oas3
+
+externalDocs:
+  url: 'https://www.comiccover.org/api/default.php'
+  description: Technical Details
+
+servers:
+  - url: 'https://www.comiccover.org/api/v1'
+  
+paths:
+
+  ##################################
+  ### PUBLISHER (1 of 4) ###
+  '/publisher/{id}':
+    get:
+      tags:
+        - publisher
+      summary: Get a publisher by ID
+      description: >-
+        Retrieve publisher by id, such as '54'. Similar to:
+        [comics.org](https://www.comics.org/publisher/54/).
+      operationId: getPublisherById
+      parameters:
+        - name: id
+          in: path
+          description: publisher ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: publisher object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/publisher'
+        '404':
+          description: publisher not found
+
+  ### PUBLISHER (2 of 4) ###
+  '/publisher/':
+    get:
+      tags:
+        - publisher
+      summary: Get matching publishers by name.
+      description: >-
+        Retrieve matching publishers by a search name, such as 'DC'. Similar to:
+        [comics.org](https://www.comics.org/searchNew/?q=dc&search_object=publisher).
+      operationId: getPublisherByName
+      parameters:
+        - name: name
+          in: query
+          description: publisher name
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: page number
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of publisher object descriptions (brief)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/publisher'
+        '404':
+          description: publisher not found
+
+  ### PUBLISHER (3 of 4) ###
+  '/publisher/{id}/brand_groups':
+    get:
+      tags:
+        - publisher, brand groups
+      summary: Get all brand groups of a publisher (by ID)
+      description: >-
+        Retrieve brand groups of a publisher by its id, such as '54'. Similar to:
+        [comics.org](https://www.comics.org/publisher/54/brands)
+      operationId: getPublisherById_BrandGroups
+      parameters:
+        - name: id
+          in: path
+          description: publisher ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a publisher's brand group objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/brand_group'
+        '404':
+          description: publisher's brand groups not found
+
+  ### PUBLISHER (4 of 4) ###
+  '/indicia_publisher/{id}':
+    get:
+      tags:
+        - indicia publisher
+      summary: Get an indicia publisher by ID
+      description: >-
+        Retrieve indicia publisher by an id, such as '5'. Similar to:
+        [comics.org](https://www.comics.org/indicia_publisher/5/)
+      operationId: getIndiciaPublisherById
+      parameters:
+        - name: id
+          in: path
+          description: indicia publisher ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: indicia publisher object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/indicia_publisher'
+        '404':
+          description: indicia publisher not found
+
+
+  ##################################
+  ### Series (1 of 6) ###
+  '/series/{id}':
+    get:
+      tags:
+        - series
+      summary: Get a series by ID
+      description: >-
+        Retrieve series by an id, such as '97'. Similar to:
+        [comics.org](https://www.comics.org/series/97)
+      operationId: getSeriesById
+      parameters:
+        - name: id
+          in: path
+          description: series ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: series object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/series'
+        '404':
+          description: series not found
+
+  ### Series (2 of 6) ###
+  '/series/':
+    get:
+      tags:
+        - series
+      summary: Get matching series by name.
+      description: >-
+        Retrieve matching series by a search name, such as 'fantastic'. Similar to:
+        [comics.org](https://www.comics.org/searchNew/?q=fantastic&search_object=series).
+      operationId: getSeriesByName
+      parameters:
+        - name: name
+          in: query
+          description: series name
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: page number
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of series object descriptions (brief)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/series'
+        '404':
+          description: series not found
+
+  ### Series (3 of 6) ###
+  '/series/{id}/brand_emblems':
+    get:
+      tags:
+        - series brand emblems
+      summary: Get a series' brand emblems by ID
+      description: >-
+        Retrieve brand emblems of a series by its id, such as '97'. Similar to:
+        [comics.org](https://www.comics.org/series/97) under the Publisher's Brands section.
+      operationId: getSeriesById_BrandEmblems
+      parameters:
+        - name: id
+          in: path
+          description: series ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of a series' brand emblem objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/brand_emblem'
+        '404':
+          description: series' brand emblems not found
+
+  ### Series (4 of 6) ###
+  '/series/{id}/indicia_publishers':
+    get:
+      tags:
+        - series indicia publishers
+      summary: Get a series' indicia publishers by ID
+      description: >-
+        Retrieve indicia publishers of a series by its id, such as '97'. Similar to:
+        [comics.org](https://www.comics.org/series/97) under the Indicia Publishers section.
+      operationId: getSeriesById_IndiciaPublishers
+      parameters:
+        - name: id
+          in: path
+          description: series ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of a series' indicia publisher objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/indicia_publisher'
+        '404':
+          description: series' indicia publishers not found
+
+  ### Series (5 of 6) ###
+  '/series/{id}/awards':
+    get:
+      tags:
+        - series awards
+      summary: Get a series' awards by ID
+      description: >-
+        Retrieve awards for a series by its id, such as '97'. Similar to:
+        [comics.org](https://www.comics.org/series/97) under the Awards section.
+      operationId: getSeriesById_Awards
+      parameters:
+        - name: id
+          in: path
+          description: series ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of a series' award objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/award'
+        '404':
+          description: series' awards not found
+
+  ### Series (6 of 6) ###
+  '/series/{id}/bonds':
+    get:
+      tags:
+        - series bonds
+      summary: Get a series' bonds by ID
+      description: >-
+        Retrieve bonds for a series by its id, such as '97'. Similar to:
+        [comics.org](https://www.comics.org/series/97) under the Tracking section.
+      operationId: getSeriesById_Bonds
+      parameters:
+        - name: id
+          in: path
+          description: series ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of a series' bond objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/series_bond'
+        '404':
+          description: series' bonds not found
+ 
+
+  ##################################
+  ### Issues (1 of 6) ###
+  '/issue/{id}':
+    get:
+      tags:
+        - issue
+      summary: Get an issue by ID
+      description: >-
+        Retrieve issue by an id, such as '7521'. Similar to:
+        [comics.org](https://www.comics.org/issue/7521)
+      operationId: getIssueById
+      parameters:
+        - name: id
+          in: path
+          description: issue ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: issue object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/issue'
+        '404':
+          description: issue not found
+
+  ### Issues (2 of 6) ###
+  '/issue/{id}/indicia_printer':
+    get:
+      tags:
+        - issue indicia printer
+      summary: Get an issue's indicia printer by ID
+      description: >-
+        Retrieve the indicia printer for an issue by its id, such as '114119'. Similar to:
+        [comics.org](https://www.comics.org/issue/114119) under the Printer section.
+      operationId: getIssueById_IndiciaPrinter
+      parameters:
+        - name: id
+          in: path
+          description: issue ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an issue's indicia printer object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/indicia_printer'
+        '404':
+          description: issue's indicia printer not found
+
+  ### Issues (3 of 6) ###
+  '/issue/{id}/issue_reprints':
+    get:
+      tags:
+        - issue reprints
+      summary: Get an issue's issue reprints by ID
+      description: >-
+        Retrieve issue-to-issue reprints for an issue by its id, such as '391286'. Similar to:
+        [comics.org](https://www.comics.org/issue/391286) reprints that are marked, 
+        ''Parts of this issue are reprinted in another issue''.
+      operationId: getIssueById_IssueReprints
+      parameters:
+        - name: id
+          in: path
+          description: issue ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of an issue's issue reprint objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/issue_reprint'
+        '404':
+          description: issue's issue reprints not found
+
+  ### Issues (4 of 6) ###
+  '/issue/{id}/reprints_from_issue':
+    get:
+      tags:
+        - issue reprints from issue
+      summary: Get an issue's reprints-from-issue by ID
+      description: >-
+        Retrieve reprints-from-issue for an issue by its id, such as '536367'. Similar to:
+        [comics.org](https://www.comics.org/issue/536367) reprints that are marked, 
+        ''Parts of this issue are reprinted to a specific story''.
+      operationId: getIssueById_ReprintsFromIssue
+      parameters:
+        - name: id
+          in: path
+          description: issue ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of an issue's reprints-from-issue objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/reprint_from_issue'
+        '404':
+          description: issue's reprints-from-issue not found
+
+  ### Issues (5 of 6) ###
+  '/issue/{id}/reprints_to_issue':
+    get:
+      tags:
+        - issue reprints to  issue
+      summary: Get an issue's reprints-to-issue by ID
+      description: >-
+        Retrieve reprints-to-issue for an issue by its id, such as '636292'. Similar to:
+        [comics.org](https://www.comics.org/issue/636292) reprints that are marked, 
+        ''Parts of this issue are reprinted from a specific story''.
+      operationId: getIssueById_ReprintsToIssue
+      parameters:
+        - name: id
+          in: path
+          description: issue ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of an issue's reprints-to-issue objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/reprint_to_issue'
+        '404':
+          description: issue's reprints-to-issue not found
+
+  ### Issues (6 of 6) ###
+  '/issue/{id}/stories':
+    get:
+      tags:
+        - issue stories
+      summary: Get an issue's stories by ID
+      description: >-
+        Retrieve stories for an issue by its id, such as '7521'. Similar to:
+        [comics.org](https://www.comics.org/issue/7521) in the list of stories.
+      operationId: getIssueById_Stories
+      parameters:
+        - name: id
+          in: path
+          description: issue ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of an issue's story objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/story'
+        '404':
+          description: issue's stories not found
+ 
+
+  ##################################
+  ### Printers (1 of 5) ###
+  '/printer/{id}':
+    get:
+      tags:
+        - printer
+      summary: Get a printer by ID
+      description: >-
+        Retrieve printer by an id, such as '9'. Similar to:
+        [comics.org](https://www.comics.org/printer/9)
+      operationId: getPrinterById
+      parameters:
+        - name: id
+          in: path
+          description: printer ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: printer object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/printer'
+        '404':
+          description: printer not found
+
+  ### Printers (2 of 5) ###
+  '/printer/':
+    get:
+      tags:
+        - printer
+      summary: Get matching printers by name.
+      description: >-
+        Retrieve printers by a search name, such as 'hemmets'. Similar to:
+        [comics.org](https://www.comics.org/searchNew/?q=hemmets&search_object=printer).
+      operationId: getPrinterByName
+      parameters:
+        - name: name
+          in: query
+          description: printer name
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: page number
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of printer descriptions (brief)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/printer'
+        '404':
+          description: printer not found
+
+  ### Printers (3 of 5) ###
+  '/printer/{id}/indicia_printers':
+    get:
+      tags:
+        - printer indicia printers
+      summary: Get a printer's indicia printers by ID
+      description: >-
+        Retrieve indicia printers for a printer by its id, such as '9'. Similar to:
+        [comics.org](https://www.comics.org/printer/9) in the Indicia Printers section.
+      operationId: getPrinterById_IndiciaPrinters
+      parameters:
+        - name: id
+          in: path
+          description: printer ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a printer's indicia printer objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/indicia_printer'
+        '404':
+          description: printer's indicia printers not found
+
+  ### Printers (4 of 5) ###
+  '/indicia_printer/{id}':
+    get:
+      tags:
+        - indicia printer
+      summary: Get an indicia printer by ID
+      description: >-
+        Retrieve indicia printer by an id, such as '8'. Similar to:
+        [comics.org](https://www.comics.org/indicia_printer/8)
+      operationId: getIndiciaPrinterById
+      parameters:
+        - name: id
+          in: path
+          description: indicia printer ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: indicia printer object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/indicia_printer'
+        '404':
+          description: indicia printer not found
+
+  ### Printers (5 of 5) ###
+  '/indicia_printer/':
+    get:
+      tags:
+        - indicia printer
+      summary: Get matching indicia printers by name.
+      description: Retrieve indicia printers by a search name, such as 'egmont'.
+      operationId: getIndiciaPrinterByName
+      parameters:
+        - name: name
+          in: query
+          description: indicia printer name
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: page number
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of indicia printer descriptions (brief)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/indicia_printer'
+        '404':
+          description: indicia printer not found
+
+
+  ##################################
+  ### BRANDS (1 of 5) ###
+  '/brand_emblem/{id}':
+    get:
+      tags:
+        - brand emblem
+      summary: Get a brand emblem by ID
+      description: >-
+        Retrieve brand emblem by an id, such as '4'. Similar to:
+        [comics.org](https://www.comics.org/brand_emblem/4/)
+      operationId: getBrandEmblemById
+      parameters:
+        - name: id
+          in: path
+          description: brand emblem ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: brand emblem object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/brand_emblem'
+        '404':
+          description: brand emblem not found
+
+  ### Brands (2 of 5) ###
+  '/brand_emblem/{id}/groups':
+    get:
+      tags:
+        - brand emblem groups
+      summary: Get a brand emblem's groups by ID
+      description: >-
+        Retrieve groups for a brand emblem by its id, such as '4'. Similar to:
+        [comics.org](https://www.comics.org/brand_emblem/4) in the Brand Groups section.
+      operationId: getBrandEmblem_Groups
+      parameters:
+        - name: id
+          in: path
+          description: brand emblem ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a brand emblem's group objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/brand_emblem_group'
+        '404':
+          description: brand emblem's groups not found
+
+  ### Brands (3 of 5) ###
+  '/brand_emblem/{id}/publisher_brand_uses':
+    get:
+      tags:
+        - brand emblem publisher brand uses
+      summary: Get a brand emblem's publisher brand uses by ID
+      description: >-
+        Retrieve publisher brand uses for a brand emblem by its id, such as '4'. Similar to:
+        [comics.org](https://www.comics.org/brand_emblem/4) in the At Publishers section.
+      operationId: getBrandEmblem_PublisherBrandUses
+      parameters:
+        - name: id
+          in: path
+          description: brand emblem ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a brand emblem's publisher brand use objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/brand_use'
+        '404':
+          description: brand emblem's publisher brand uses not found
+
+  ### Brands (4 of 5) ###
+  '/brand_group/{id}':
+    get:
+      tags:
+        - brand group
+      summary: Get a brand group by ID
+      description: >-
+        Retrieve brand group by an id, such as '1563'. Similar to:
+        [comics.org](https://www.comics.org/brand_group/1563)
+      operationId: getBrandGroupById
+      parameters:
+        - name: id
+          in: path
+          description: brand group ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: brand group object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/brand_group'
+        '404':
+          description: brand group not found
+
+  ### Brands (5 of 5) ###
+  '/brand_group/{id}/emblem_brand_uses':
+    get:
+      tags:
+        - brand group emblem brand uses
+      summary: Get a brand group's emblem brand uses by ID
+      description: >-
+        Retrieve emblem brand uses for a brand group by its id, such as '1563'. Similar to:
+        [comics.org](https://www.comics.org/brand_group/1563) in the Used Brand Emblems section.
+      operationId: getBrandGroup_EmblemBrandUses
+      parameters:
+        - name: id
+          in: path
+          description: brand group ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a brand group's emblem brand use objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/brand_use'
+        '404':
+          description: brand group's emblem brand uses not found
+
+ 
+
+  ##################################
+  ### Brand-Related Items (1 of 1) ###
+  '/brand_use/{id}':
+    get:
+      tags:
+        - brand use
+      summary: Get a brand use by ID
+      description: >-
+        Retrieve brand use by an id, such as '5256'. This represents associating 
+        a brand to a publisher.
+      operationId: getBrandUseById
+      parameters:
+        - name: id
+          in: path
+          description: brand use ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: brand use object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/brand_use'
+        '404':
+          description: brand use not found
+ 
+
+  ##################################
+  ### Stories (1 of 7) ###
+  '/story/{id}':
+    get:
+      tags:
+        - story
+      summary: Get a story by ID
+      description: >-
+        Retrieve story by an id, such as '2782805'. Similar to:
+        [comics.org](https://www.comics.org/issue/2041913/#2782805)
+      operationId: getStoryById
+      parameters:
+        - name: id
+          in: path
+          description: story ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: story object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/story'
+        '404':
+          description: story not found
+
+  ### Stories (2 of 7) ###
+  '/story/{id}/credits':
+    get:
+      tags:
+        - story credits
+      summary: Get a story's creator object credits by ID
+      description: >-
+        Retrieve creator object credits for a story by its id, such as '2782805'. Similar to:
+        [comics.org](https://www.comics.org/issue/2041913/#2782805) -- linked credits only.
+      operationId: getStoryById_Credits
+      parameters:
+        - name: id
+          in: path
+          description: story ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a story's credits referencing creator objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/story_credit'
+        '404':
+          description: story's credits using creator objects not found
+
+  ### Stories (3 of 7) ###
+  '/story/{id}/awards':
+    get:
+      tags:
+        - story awards
+      summary: Get a story's received awards by ID
+      description: >-
+        Retrieve received awards for a story by its id, such as '175376'. Similar to:
+        [comics.org](https://www.comics.org/issue/26023/#175376) in the Awards section.
+      operationId: getStoryById_Awards
+      parameters:
+        - name: id
+          in: path
+          description: story ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a story's received award objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/received_award'
+        '404':
+          description: story's credits using creator objects not found
+
+  ### Stories (4 of 7) ###
+  '/story/{id}/abstract':
+    get:
+      tags:
+        - story abstract
+      summary: Get a story's abstract by ID
+      description: >-
+        Retrieve the abstract for a story by its id, such as '2782805'. Similar to:
+        [comics.org](https://www.comics.org/issue/2041913/#2782805) in the Abstract section.
+      operationId: getStoryById_Abstract
+      parameters:
+        - name: id
+          in: path
+          description: story ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: a story's abstract object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/biblio_entry'
+        '404':
+          description: story's abstract not found
+
+  ### Stories (5 of 7) ###
+  '/story/{id}/reprints':
+    get:
+      tags:
+        - story reprints
+      summary: Get a story's story-to-story reprints by ID
+      description: >-
+        Retrieve story-to-story reprints for a story by its id, such as '209149'. Similar to:
+        [comics.org](https://www.comics.org/issue/35078/#209149) in the reprints section.
+      operationId: getStoryById_Reprints
+      parameters:
+        - name: id
+          in: path
+          description: story ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a story's story-to-story reprint objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/reprint'
+        '404':
+          description: story's story-to-story reprint not found
+
+  ### Stories (6 of 7) ###
+  '/story/{id}/reprints_from_issue':
+    get:
+      tags:
+        - story reprints from issue
+      summary: Get a story's reprints-from-issue by ID
+      description: >-
+        Retrieve reprints-from-issue for a story by its id, such as '928788'. Similar to:
+        [comics.org](https://www.comics.org/issue/636145#928788) reprints that are marked, 
+        ''Parts of this issue are reprinted to a specific story''.
+      operationId: getStoryById_ReprintsFromIssue
+      parameters:
+        - name: id
+          in: path
+          description: story ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of an story's reprints-from-issue objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/reprint_from_issue'
+        '404':
+          description: story's reprints-from-issue not found
+
+  ### Stories (7 of 7) ###
+  '/story/{id}/reprints_to_issue':
+    get:
+      tags:
+        - story reprints to  issue
+      summary: Get a story's reprints-to-issue by ID
+      description: >-
+        Retrieve reprints-to-issue for a story by its id, such as '506106'. Similar to:
+        [comics.org](https://www.comics.org/issue/303196#506106) reprints that are marked, 
+        ''Parts of this issue are reprinted from a specific story''.
+      operationId: getStoryById_ReprintsToIssue
+      parameters:
+        - name: id
+          in: path
+          description: story ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of an story's reprints-to-issue objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/reprint_to_issue'
+        '404':
+          description: story's reprints-to-issue not found
+  
+
+  ##################################
+  ### Creators (1 of 12) ###
+  '/creator/{id}':
+    get:
+      tags:
+        - creator
+      summary: Get a creator by ID
+      description: >-
+        Retrieve creator by an id, such as '11642'. Similar to:
+        [comics.org](https://www.comics.org/creator/11642)
+      operationId: getCreatorById
+      parameters:
+        - name: id
+          in: path
+          description: creator ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: creator object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator'
+        '404':
+          description: creator not found
+
+  ### Creators (2 of 12) ###
+  '/creator/':
+    get:
+      tags:
+        - creator
+      summary: Get matching creators by name.
+      description: >-
+        Retrieve creators by a search name, such as 'davis'. Similar to:
+        [comics.org](https://www.comics.org/searchNew/?q=davis&search_object=creator).
+      operationId: getCreatorByName
+      parameters:
+        - name: name
+          in: query
+          description: creator name
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: page number
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of creator descriptions (brief)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator'
+        '404':
+          description: creator not found
+
+  ### Creators (3 of 12) ###
+  '/creator/{id}/names':
+    get:
+      tags:
+        - creator names
+      summary: Get a creator's names by ID
+      description: >-
+        Retrieve names for a creator by their id, such as '11642'. Similar to:
+        [comics.org](https://www.comics.org/creator/11642) the Names section.
+      operationId: getCreatorById_Names
+      parameters:
+        - name: id
+          in: path
+          description: creator ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a creator's name objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_name_detail'
+        '404':
+          description: creator's name details not found
+
+  ### Creators (4 of 12) ###
+  '/creator/{id}/schools':
+    get:
+      tags:
+        - creator schools
+      summary: Get a creator's schools by ID
+      description: >-
+        Retrieve schools for a creator by their id, such as '11642'. Similar to:
+        [comics.org](https://www.comics.org/creator/11642) the Schools section.
+      operationId: getCreatorById_Schools
+      parameters:
+        - name: id
+          in: path
+          description: creator ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a creator's school objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_school'
+        '404':
+          description: creator's schools not found
+
+  ### Creators (5 of 12) ###
+  '/creator/{id}/degrees':
+    get:
+      tags:
+        - creator degrees
+      summary: Get a creator's degrees by ID
+      description: >-
+        Retrieve degrees for a creator by their id, such as '11642'. Similar to:
+        [comics.org](https://www.comics.org/creator/11642) the Degrees section.
+      operationId: getCreatorById_Degrees
+      parameters:
+        - name: id
+          in: path
+          description: creator ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a creator's degree objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_degree'
+        '404':
+          description: creator's degrees not found
+
+  ### Creators (6 of 12) ###
+  '/creator/{id}/signatures':
+    get:
+      tags:
+        - creator signatures
+      summary: Get a creator's signatures by ID
+      description: >-
+        Retrieve signatures for a creator by their id, such as '11642'. Similar to:
+        [comics.org](https://www.comics.org/creator/11642) the Signatures section.
+      operationId: getCreatorById_Signatures
+      parameters:
+        - name: id
+          in: path
+          description: creator ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a creator's signature objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_signature'
+        '404':
+          description: creator's signatures not found
+
+  ### Creators (7 of 12) ###
+  '/creator/{id}/awards':
+    get:
+      tags:
+        - creator awards
+      summary: Get a creator's awards by ID
+      description: >-
+        Retrieve awards for a creator by their id, such as '11642'. Similar to:
+        [comics.org](https://www.comics.org/creator/11642) the Awards section.
+      operationId: getCreatorById_Awards
+      parameters:
+        - name: id
+          in: path
+          description: creator ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a creator's award objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/received_award'
+        '404':
+          description: creator's awards not found
+
+  ### Creators (8 of 12) ###
+  '/creator/{id}/awards_for_stories':
+    get:
+      tags:
+        - creator awards for stories
+      summary: Get a creator's awards for stories by ID
+      description: >-
+        Retrieve awards for stories for a creator by their id, such as '11642'. Similar to:
+        [comics.org](https://www.comics.org/creator/11642) the Awards for Stories section.
+      operationId: getCreatorById_AwardsForStories
+      parameters:
+        - name: id
+          in: path
+          description: creator ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a creator's award for story objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/received_award'
+        '404':
+          description: creator's awards for stories not found
+
+  ### Creators (9 of 12) ###
+  '/creator/{id}/art_influences':
+    get:
+      tags:
+        - creator art influences
+      summary: Get a creator's art influences by ID
+      description: >-
+        Retrieve art influences (both to and from) for a creator by their id, such as '11642'. Similar to:
+        [comics.org](https://www.comics.org/creator/11642) the Art Influences section.
+      operationId: getCreatorById_Art_Influences
+      parameters:
+        - name: id
+          in: path
+          description: creator ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a creator's art influence objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_art_influence'
+        '404':
+          description: creator's art influences not found
+
+  ### Creators (10 of 12) ###
+  '/creator/{id}/memberships':
+    get:
+      tags:
+        - creator memberships
+      summary: Get a creator's memberships by ID
+      description: >-
+        Retrieve memberships for a creator by their id, such as '11642'. Similar to:
+        [comics.org](https://www.comics.org/creator/11642) the Memberships section.
+      operationId: getCreatorById_Memberships
+      parameters:
+        - name: id
+          in: path
+          description: creator ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a creator's membership objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_membership'
+        '404':
+          description: creator's memberships not found
+
+  ### Creators (11 of 12) ###
+  '/creator/{id}/non_comic_works':
+    get:
+      tags:
+        - creator non-comic works
+      summary: Get a creator's non-comic works by ID
+      description: >-
+        Retrieve non-comic works for a creator by their id, such as '11642'. Similar to:
+        [comics.org](https://www.comics.org/creator/11642) the Non-Comic Works section.
+      operationId: getCreatorById_NonComicWorks
+      parameters:
+        - name: id
+          in: path
+          description: creator ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a creator's non-comic work objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_non_comic_work'
+        '404':
+          description: creator's non-comic works not found
+
+  ### Creators (12 of 12) ###
+  '/creator/{id}/relations':
+    get:
+      tags:
+        - creator relations
+      summary: Get a creator's relations by ID
+      description: >-
+        Retrieve relations for a creator by their id, such as '11642'. Similar to:
+        [comics.org](https://www.comics.org/creator/11642) the Relations section.
+      operationId: getCreatorById_Relations
+      parameters:
+        - name: id
+          in: path
+          description: creator ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a creator's relation objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_relation'
+        '404':
+          description: creator's relations not found
+
+
+  ##################################
+  ### Creator-Related Items (1 of 9) ###
+  '/school/{id}':
+    get:
+      tags:
+        - school
+      summary: Get a school by ID
+      description: >-
+        Retrieve school by an id, such as '445'. Similar to:
+        [comics.org](https://www.comics.org/school/445)
+      operationId: getSchoolById
+      parameters:
+        - name: id
+          in: path
+          description: school ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: school object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/school'
+        '404':
+          description: school not found
+
+  ### Creator-Related Items (2 of 9) ###
+  '/school/':
+    get:
+      tags:
+        - school
+      summary: Get matching schools by name.
+      description: Retrieve schools by a search name, such as 'Missouri'.
+      operationId: getSchoolByName
+      parameters:
+        - name: name
+          in: query
+          description: school name
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: page number
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of school descriptions (brief)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/school'
+        '404':
+          description: school not found
+
+  ### Creator-Related Items (3 of 9) ###
+  '/creator_school/{id}':
+    get:
+      tags:
+        - creator school
+      summary: Get a creator school by ID
+      description: >-
+        Retrieve creator school by an id, such as '607'. This is the association of a 
+        creator to a school. Similar to: [comics.org](https://www.comics.org/creator_school/607/)
+      operationId: getCreatorSchoolById
+      parameters:
+        - name: id
+          in: path
+          description: creator school ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: creator school object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_school'
+        '404':
+          description: creator school not found
+
+  ### CREATOR-RELATED (4 of 9) ###
+  '/award/{id}':
+    get:
+      tags:
+        - award
+      summary: Get an award by ID
+      description: >-
+        Retrieve award by an id, such as ''6''. Similar to:
+        [comics.org](https://www.comics.org/award/6/)
+      operationId: getAwardById
+      parameters:
+        - name: id
+          in: path
+          description: award ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: award object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/award'
+        '404':
+          description: award not found
+
+  ### Creator-Related Items (5 of 9) ###
+  '/award/':
+    get:
+      tags:
+        - award
+      summary: Get matching awards by name.
+      description: Retrieve matching awards by a search name, such as 'Hugo'.
+      operationId: getawardByName
+      parameters:
+        - name: name
+          in: query
+          description: award name
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: page number
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of award descriptions (brief)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/award'
+        '404':
+          description: award not found
+
+  ### Creator-Related Items (6 of 9) ###
+  '/received_award/{id}':
+    get:
+      tags:
+        - received award
+      summary: Get an received award by ID
+      description: >-
+        Retrieve received award by an id, such as ''4938''. This is an association of an award 
+        with a creator. Similar to: [comics.org](https://www.comics.org/received_award/4938)
+      operationId: getReceivedAwardById
+      parameters:
+        - name: id
+          in: path
+          description: received award ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: received award object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/received_award'
+        '404':
+          description: received award not found
+
+  ### Creator-Related Items (7 of 9) ###
+  '/creator_signature/{id}':
+    get:
+      tags:
+        - creator signature
+      summary: Get a creator signature description by ID.
+      description: >-
+        Retrieve creature signature description by an id, such as ''2857''. Similar to:
+        [comics.org](https://www.comics.org/creator_signature/2857/) without the image.
+      operationId: getCreatorSignatureById
+      parameters:
+        - name: id
+          in: path
+          description: creator signature ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: creator signature object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_signature'
+        '404':
+          description: creator signature description not found
+
+  ### Creator-Related Items (8 of 9) ###
+  '/creator_art_influence/{id}':
+    get:
+      tags:
+        - creator art influence
+      summary: Get a creator art influence by ID
+      description: >-
+        Retrieve creator art influence by an id, such as ''1083''. This captures the statement of one 
+        creator claiming influence from another creator. Similar to:
+        [comics.org](https://www.comics.org/creator_art_influence/1083/)
+      operationId: getCreatorArtInfluenceById
+      parameters:
+        - name: id
+          in: path
+          description: creator art influence ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: creator art influence object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_art_influence'
+        '404':
+          description: creator art influence not found
+
+  ### Creator-Related Items (9 of 9) ###
+  '/creator_membership/{id}':
+    get:
+      tags:
+        - creator membership
+      summary: Get a creator membership by ID
+      description: >-
+        Retrieve creator membership by an id, such as ''139''. Similar to:
+        [comics.org](https://www.comics.org/creator_membership/139/)
+      operationId: getCreatorMembershipById
+      parameters:
+        - name: id
+          in: path
+          description: creator membership ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: creator membership object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/creator_membership'
+        '404':
+          description: creator membership not found
+
+
+  ##################################
+  ### Features (1 of 4) ###
+  '/feature/{id}':
+    get:
+      tags:
+        - feature
+      summary: Get a feature by ID
+      description: >-
+        Retrieve feature by an id, such as ''98''. Similar to:
+        [comics.org](https://www.comics.org/feauture/98/)
+      operationId: getFeatureById
+      parameters:
+        - name: id
+          in: path
+          description: feature ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: feature object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature'
+        '404':
+          description: feature not found
+
+  ### Features (2 of 4) ###
+  '/feature/':
+    get:
+      tags:
+        - feature
+      summary: Get matching features by name.
+      description: >-
+        Retrieve matching features by a search name, such as 'mickey'.
+      operationId: getfeatureByName
+      parameters:
+        - name: name
+          in: query
+          description: feature name
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: page number
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: array of feature descriptions (brief)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature'
+        '404':
+          description: feature not found
+
+  ### Features (3 of 4) ###
+  '/feature/{id}/logos':
+    get:
+      tags:
+        - feature logos
+      summary: Get a feature's logos by ID
+      description: >-
+        Retrieve logos for a feature by its id, such as '98'. Similar to:
+        [comics.org](https://www.comics.org/feature/98) the Feature Logos section.
+      operationId: getfeatureById_Logos
+      parameters:
+        - name: id
+          in: path
+          description: feature ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a feature's logo objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature_logo_2_feature'
+        '404':
+          description: feature's logos not found
+
+  ### Features (4 of 4) ###
+  '/feature/{id}/feature_relations':
+    get:
+      tags:
+        - feature relations
+      summary: Get a feature's relations by ID
+      description: >-
+        Retrieve related features for a feature by its id, such as '98'. Similar to:
+        [comics.org](https://www.comics.org/feature/98) the Feature Relations section.
+      operationId: getfeatureById_Feature_Relations
+      parameters:
+        - name: id
+          in: path
+          description: feature ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: an array of a feature's relation objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature_relation'
+        '404':
+          description: feature's relations not found
+
+
+  ##################################
+  ### Feature Logos (1 of 1) ###
+  '/feature_logo/{id}':
+    get:
+      tags:
+        - feature logo
+      summary: Get a feature logo description by ID
+      description: >-
+        Retrieve feature logo description by an id, such as ''93''. Similar to:
+        [comics.org](https://www.comics.org/feature_logo/93/)
+      operationId: getFeatureLogoById
+      parameters:
+        - name: id
+          in: path
+          description: feature logo ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: feature logo object (detailed)
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature_logo'
+        '404':
+          description: feature logo description not found
+
+
+  ##################################
+  ### Supporting Tables (1 of 9) ###
+  '/countries':
+    get:
+      tags:
+        - countries
+      summary: Get all countries
+      description: Retrieve all countries
+      operationId: getCountries
+      responses:
+        '200':
+          description: an array of a country objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/stddata_country'
+        '404':
+          description: countries not found
+  
+  ### Supporting Tables (2 of 9) ###
+  '/country/{id}':
+    get:
+      tags:
+        - country
+      summary: Get a country by ID
+      description: Retrieve country such as the United States by an id, such as ''225'
+      operationId: getCountryById
+      parameters:
+        - name: id
+          in: path
+          description: country ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: country object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/stddata_country'
+        '404':
+          description: country not found
+  
+  ### Supporting Tables (3 of 9) ###
+  '/languages':
+    get:
+      tags:
+        - languages
+      summary: Get all languages
+      description: Retrieve all languages
+      operationId: getLanguages
+      responses:
+        '200':
+          description: an array of a language objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/stddata_language'
+        '404':
+          description: languages not found
+  
+  
+  ### Supporting Tables (4 of 9) ###
+  '/language/{id}':
+    get:
+      tags:
+        - language
+      summary: Get a language by ID
+      description: Retrieve language such as English by an id, such as ''25'
+      operationId: getLanguageById
+      parameters:
+        - name: id
+          in: path
+          description: language ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: language object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/stddata_language'
+        '404':
+          description: language not found
+  
+  ### Supporting Tables (5 of 9) ###
+  '/scripts':
+    get:
+      tags:
+        - written scripts
+      summary: Get all written scripts
+      description: Retrieve all written scripts
+      operationId: getScripts
+      responses:
+        '200':
+          description: an array of a written script objects (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/stddata_script'
+        '404':
+          description: languages not found
+  
+  ### Supporting Tables (6 of 9) ###
+  '/script/{id}':
+    get:
+      tags:
+        - script
+      summary: Get a writing script by ID
+      description: Retrieve writing script such as ''Latin'' by an id, such as ''37'
+      operationId: getScriptById
+      parameters:
+        - name: id
+          in: path
+          description: writing script ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: writing script object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/stddata_script'
+        '404':
+          description: writing script not found
+  
+  ### Supporting Tables (7 of 9) ###
+  '/date/{id}':
+    get:
+      tags:
+        - date
+      summary: Get an assigned date by ID
+      description: >- 
+        Retrieve a specific assigned date (from among hundreds of thousands) by an id, such as ''6''
+      operationId: getDateById
+      parameters:
+        - name: id
+          in: path
+          description: date ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: date object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/stddata_date'
+        '404':
+          description: date not found
+  
+  ### Supporting Tables (8 of 9) ###
+  '/tag/{id}':
+    get:
+      tags:
+        - tag
+      summary: Get a keyword tag by ID
+      description: Retrieve keyword tag by an id, such as ''10'
+      operationId: getTagById
+      parameters:
+        - name: id
+          in: path
+          description: kayword tag ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: keyword tag object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/taggit_tag'
+        '404':
+          description: keyword tag not found
+  
+  ### Supporting Tables (9 of 9) ###
+  '/taggeditem/{id}':
+    get:
+      tags:
+        - tagged item
+      summary: Get a tagged item by ID
+      description: Retrieve tagged item by an id, such as ''7972''. This is the association of 
+        a tag to an item (such as keywords in a story).
+      operationId: getTaggedItemById
+      parameters:
+        - name: id
+          in: path
+          description: tagged item ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: tagged item object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/taggit_taggeditem'
+        '404':
+          description: tagged item not found
+  
+  ##################################
+  ### Types (1 of 24) ###
+  '/series_publication_types':
+    get:
+      tags:
+        - series publication types
+      summary: Get all series publication types
+      description: Retrieve all series publication types
+      operationId: getSeriesPublicationTypes
+      responses:
+        '200':
+          description: an array of series publication types (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/series_publication_type'
+        '404':
+          description: series publication types not found
+  
+  ### Types (2 of 24) ###
+  '/series_publication_type/{id}':
+    get:
+      tags:
+        - series publication type
+      summary: Get a series publication type by ID
+      description: Retrieve series publication type by an id, such as ''1''
+      operationId: getSeriesPublicationTypeById
+      parameters:
+        - name: id
+          in: path
+          description: series publication type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: series publication type object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/series_publication_type'
+        '404':
+          description: series publication type not found
+  
+  ### Types (3 of 24) ###
+  '/series_bond_types':
+    get:
+      tags:
+        - series bond types
+      summary: Get all series bond types
+      description: Retrieve all series bond types
+      operationId: getSeriesBondTypes
+      responses:
+        '200':
+          description: an array of series bond types (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/series_bond_type'
+        '404':
+          description: series publication types not found
+  
+  ### Types (4 of 24) ###
+  '/series_bond_type/{id}':
+    get:
+      tags:
+        - series bond type
+      summary: Get a series bond type by ID
+      description: Retrieve series bond type by an id, such as ''1''
+      operationId: getSeriesBondTypeById
+      parameters:
+        - name: id
+          in: path
+          description: series bond type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: series bond type object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/series_bond_type'
+        '404':
+          description: series bond type not found
+  
+  ### Types (5 of 24) ###
+  '/story_types':
+    get:
+      tags:
+        - story types
+      summary: Get all story types
+      description: Retrieve all story types
+      operationId: getStoryTypes
+      responses:
+        '200':
+          description: an array of story types (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/story_type'
+        '404':
+          description: story types not found
+  
+  ### Types (6 of 24) ###
+  '/story_type/{id}':
+    get:
+      tags:
+        - story type
+      summary: Get a story type by ID
+      description: Retrieve story type by an id, such as ''1''
+      operationId: getStoryTypeById
+      parameters:
+        - name: id
+          in: path
+          description: story type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: story type object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/story_type'
+        '404':
+          description: story type not found
+  
+  ### Types (7 of 24) ###
+  '/credit_types':
+    get:
+      tags:
+        - credit types
+      summary: Get all credit types
+      description: Retrieve all credit types
+      operationId: getCreditTypes
+      responses:
+        '200':
+          description: an array of credit types (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/credit_type'
+        '404':
+          description: credit types not found
+  
+  ### Types (8 of 24) ###
+  '/credit_type/{id}':
+    get:
+      tags:
+        - credit type
+      summary: Get a credit type by ID
+      description: Retrieve credit type by an id, such as ''1''
+      operationId: getCreditTypeById
+      parameters:
+        - name: id
+          in: path
+          description: credit type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: credit type object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/credit_type'
+        '404':
+          description: credit type not found
+  
+  ### Types (9 of 24) ###
+  '/feature_types':
+    get:
+      tags:
+        - feature types
+      summary: Get all feature types
+      description: Retrieve all feature types
+      operationId: getFeatureTypes
+      responses:
+        '200':
+          description: an array of feature types (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature_type'
+        '404':
+          description: feature types not found
+  
+  ### Types (10 of 24) ###
+  '/feature_type/{id}':
+    get:
+      tags:
+        - feature type
+      summary: Get a feature type by ID
+      description: Retrieve feature type by an id, such as ''1''
+      operationId: getFeatureTypeById
+      parameters:
+        - name: id
+          in: path
+          description: feature type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: feature type object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature_type'
+        '404':
+          description: feature type not found
+  
+  ### Types (11 of 24) ###
+  '/feature_relation_types':
+    get:
+      tags:
+        - feature relation types
+      summary: Get all feature relation types
+      description: Retrieve all feature relation types
+      operationId: getFeatureRelationTypes
+      responses:
+        '200':
+          description: an array of feature relation types (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature_relation_type'
+        '404':
+          description: feature relation types not found
+  
+  ### Types (12 of 24) ###
+  '/feature_relation_type/{id}':
+    get:
+      tags:
+        - feature relation type
+      summary: Get a feature relation type by ID
+      description: Retrieve feature relation type by an id, such as ''1''
+      operationId: getFeatureRelationTypeById
+      parameters:
+        - name: id
+          in: path
+          description: feature relation type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: feature relation type object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/feature_relation_type'
+        '404':
+          description: feature relation type not found
+  
+  ### Types (13 of 24) ###
+  '/name_types':
+    get:
+      tags:
+        - name types
+      summary: Get all name types
+      description: Retrieve all name types
+      operationId: getNameTypes
+      responses:
+        '200':
+          description: an array of name types (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/name_type'
+        '404':
+          description: name types not found
+  
+  ### Types (14 of 24) ###
+  '/name_type/{id}':
+    get:
+      tags:
+        - name type
+      summary: Get a name type by ID
+      description: Retrieve name type by an id, such as ''1''
+      operationId: getNameTypeById
+      parameters:
+        - name: id
+          in: path
+          description: name type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: name type object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/name_type'
+        '404':
+          description: name type not found
+  
+  ### Types (15 of 24) ###
+  '/degrees':
+    get:
+      tags:
+        - degree types
+      summary: Get all degree types
+      description: Retrieve all degree types
+      operationId: getDegreeTypes
+      responses:
+        '200':
+          description: an array of degree types (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/degree'
+        '404':
+          description: degree types not found
+  
+  ### Types (16 of 24) ###
+  '/degree/{id}':
+    get:
+      tags:
+        - degree type
+      summary: Get a degree type by ID
+      description: Retrieve degree type by an id, such as ''1''
+      operationId: getDegreeTypeById
+      parameters:
+        - name: id
+          in: path
+          description: degree type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: degree type object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/degree'
+        '404':
+          description: degree type not found
+  
+  ### Types (17 of 24) ###
+  '/membership_types':
+    get:
+      tags:
+        - membership types
+      summary: Get all membership types
+      description: Retrieve all membership types
+      operationId: getMembershipTypes
+      responses:
+        '200':
+          description: an array of membership types (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/membership_type'
+        '404':
+          description: membership types not found
+  
+  ### Types (18 of 24) ###
+  '/membership_type/{id}':
+    get:
+      tags:
+        - membership type
+      summary: Get a membership type by ID
+      description: Retrieve membership type by an id, such as ''1''
+      operationId: getMembershipTypeById
+      parameters:
+        - name: id
+          in: path
+          description: membership type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: membership type object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/membership_type'
+        '404':
+          description: membership type not found
+  
+  ### Types (19 of 24) ###
+  '/non_comic_work_types':
+    get:
+      tags:
+        - non-comic work types
+      summary: Get all non-comic work types
+      description: Retrieve all non-comic work types
+      operationId: getNonComicWorkTypes
+      responses:
+        '200':
+          description: an array of non-comic work types (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/non_comic_work_type'
+        '404':
+          description: non-comic work types not found
+  
+  ### Types (20 of 24) ###
+  '/non_comic_work_type/{id}':
+    get:
+      tags:
+        - non-comic work type
+      summary: Get a non-comic work type by ID
+      description: >-
+        Retrieve non-comic work type by an id, such as ''1''
+      operationId: getNonComicWorkTypeById
+      parameters:
+        - name: id
+          in: path
+          description: non-comic work type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: non-comic work type object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/non_comic_work_type'
+        '404':
+          description: non-comic work type not found
+  
+  ### Types (21 of 24) ###
+  '/non_comic_work_roles':
+    get:
+      tags:
+        - non-comic work roles
+      summary: Get all non-comic work roles
+      description: Retrieve all non-comic work roles
+      operationId: getNonComicWorkRoles
+      responses:
+        '200':
+          description: an array of non-comic work roles (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/non_comic_work_role'
+        '404':
+          description: non-comic work roles not found
+  
+  ### Types (22 of 24) ###
+  '/non_comic_work_role/{id}':
+    get:
+      tags:
+        - non-comic work role
+      summary: Get a non-comic work role by ID
+      description: >-
+        Retrieve non-comic work role by an id, such as ''1''
+      operationId: getNonComicWorkRoleById
+      parameters:
+        - name: id
+          in: path
+          description: non-comic work role ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: non-comic work role object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/non_comic_work_role'
+        '404':
+          description: non-comic work role not found
+  
+  ### Types (23 of 24) ###
+  '/relation_types':
+    get:
+      tags:
+        - relation types
+      summary: Get all relation types
+      description: Retrieve all relation types
+      operationId: getRelationTypes
+      responses:
+        '200':
+          description: an array of relation types (detailed)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/relation_type'
+        '404':
+          description: relation types not found
+  
+  ### Types (24 of 24) ###
+  '/relation_type/{id}':
+    get:
+      tags:
+        - relation type
+      summary: Get a relation type by ID
+      description: >-
+        Retrieve relation type by id, such as ''1''
+      operationId: getRelationTypeById
+      parameters:
+        - name: id
+          in: path
+          description: relation type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: relation type object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: 'https://www.comiccover.org/api/inc/r.yaml#/components/schemas/relation_type'
+        '404':
+          description: relation type not found
+

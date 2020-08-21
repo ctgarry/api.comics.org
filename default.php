@@ -22,6 +22,7 @@
 <li>this page updated: <?=date("F d Y H:i:s", filemtime("default.php"))?> UTC. </li>
 <li>MySQL data source: <a target="gcd" href="https://www.comics.org/download/">gcd data dump</a> 2020-08-15 03:41:16 </li>
 <li>demo source control: <a target="github" href="https://github.com/ctgarry/api.comics.org">https://github.com/ctgarry/api.comics.org</a> </li>
+<li>OpenAPI Specification: <a target="github" href="https://app.swaggerhub.com/search?type=API&owner=ctgarry">hosted at Swagger HUB</a> </li>
 </ul>
 </b>
 
@@ -804,7 +805,12 @@
     <a target="emulators" href="https://www.postman.com/">"POSTMan" REST API Emulator</a><br>
     <a target="emulators" href="https://www.soapui.org/">"SOAPUI" REST API Emulator</a><br>
     <a target="emulators" href="https://www.google.com/search?q=advanced+rest+client">"Advanced Rest Client" REST API Emulator</a><br>
-    etc...<br><br><br>
+
+    <h2>Tools for API specifications:</h2>
+    <a target="emulators" href="https://swagger.io/specification/">OpenAPI Specification (OAS) v3</a><br>
+    <a target="emulators" href="https://www.kennethlange.com/write-beautiful-rest-documentation-with-swagger/">Beautiful APIs with Swagger (OAS)</a><br>
+      
+    <br><br>etc...<br><br><br>
 </body>
 
 </html>
