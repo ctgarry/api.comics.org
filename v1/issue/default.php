@@ -15,19 +15,19 @@ $query = "SELECT * FROM " . $table . " WHERE deleted = 0 AND id = ?";
 
 /****** 
  * CUSTOMIZATIONS need updates and additions */
-if ($issue_id > 0 && strpos($request, 'indicia_printer') !== false ) {
+if ($param_id > 0 && strpos($request, 'indicia_printer') !== false ) {
     $query = get_issue_indicia_printer_sql;
 } // example: /v1/issue/114119/indicia_printer
 
-if ($issue_id > 0 && strpos($request, 'issue_reprints') !== false ) {
+if ($param_id > 0 && strpos($request, 'issue_reprints') !== false ) {
     $query = get_issue_issue_reprints_sql;
 } // example: /v1/issue/391286/issue_reprints
 
-if ($issue_id > 0 && strpos($request, 'reprints_from_issue') !== false ) {
+if ($param_id > 0 && strpos($request, 'reprints_from_issue') !== false ) {
     $query = get_issue_reprints_from_issue_sql;
 } // example: /v1/issue/536367/reprints_from_issue
 
-if ($issue_id > 0 && strpos($request, 'reprints_to_issue') !== false ) {
+if ($param_id > 0 && strpos($request, 'reprints_to_issue') !== false ) {
     $query = get_issue_reprints_to_issue_sql;
 } // example: /v1/issue/636292/reprints_to_issue
 
