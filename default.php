@@ -21,7 +21,7 @@
 <b><ul>
 <li>this page updated: <?=date("F d Y H:i:s", filemtime("default.php"))?> UTC. </li>
 <li>MySQL data source: <a target="gcd" href="https://www.comics.org/download/">gcd data dump</a> 
-    2020-09-15 01:35:51 GMT</li>
+ 2020-10-29 04:41:16 GMT</li>
 <li>demo source control: <a target="github" href="https://github.com/ctgarry/api.comics.org">https://github.com/ctgarry/api.comics.org</a> </li>
 <li>OpenAPI Specification: <a target="github" href="https://app.swaggerhub.com/search?type=API&owner=ctgarry">hosted at Swagger HUB</a> </li>
 </ul>
