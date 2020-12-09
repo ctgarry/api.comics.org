@@ -12,6 +12,7 @@ $results_array = array(); // OUT
 $params_types = 'i';
 $params = array( $param_id );
 $query = "SELECT * FROM " . $table . " WHERE id = ? "; // no deleted field
+$contains_json_as_subquery = false;
 
 /******
  * Customizations need updates and additions **/
