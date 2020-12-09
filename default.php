@@ -127,7 +127,8 @@
                     </tr>
                     <tr>
                         <td>GET</td>
-                        <td NOWRAP><a class='method' target="api" href="v1/issue/7521">/v1/issue/7521</a></td>
+                        <td NOWRAP><a class='method' target="api" href="v1/issue/7521">/v1/issue/7521</a><br>
+                            &nbsp;&nbsp;└─<a target="api" href="v1/issue/?barcode=76194120001990111">/v1/issue/?barcode=76194120001990111</a></td>
                         <td><a target="gcd" href="https://www.comics.org/issue/7521"><img class=myB
                                     src="images/r/gcd.png" /></a>
                         </td>

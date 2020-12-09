@@ -159,6 +159,12 @@ $get_indicia_printer_by_name_paged_sql = "
     ORDER BY `issue_count` DESC, `year_began`
     LIMIT ?, ? ";
 
+$get_issue_by_barcode_paged_sql = "
+    SELECT *
+    FROM " . $DBName . ".gcd_issue WHERE INSTR( `barcode`, ? ) > 0 
+    ORDER BY `barcode`
+    LIMIT ?, ? ";
+
 $get_issue_indicia_printer_sql = "
     SELECT ip.`id`, ip.`name` FROM " . $DBName . ".gcd_issue_indicia_printer iip
     INNER JOIN " . $DBName . ".gcd_indicia_printer ip ON iip.`indiciaprinter_id` = ip.`id`

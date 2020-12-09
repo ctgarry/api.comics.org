@@ -12,6 +12,7 @@ $results_array = array(); // OUT
 $params_types = 'i';
 $params = array( $param_id );
 $query = "SELECT * FROM " . $table . " WHERE deleted = 0 AND id = ?";
+$contains_json_as_subquery = false;
 
 /****** 
  * CUSTOMIZATIONS need updates and additions */
@@ -30,6 +31,17 @@ if ($param_id > 0 && strpos($request, 'reprints_from_issue') !== false ) {
 if ($param_id > 0 && strpos($request, 'reprints_to_issue') !== false ) {
     $query = get_issue_reprints_to_issue_sql;
 } // example: /v1/issue/636292/reprints_to_issue
+
+if ( $param_id == 0 && strpos( $request, 'barcode' ) !== false ) {
+    $page = intval( isset( $_GET['page'] ) ?$_GET['page'] : 0 ); if ( $page < 1 ) $page = 1;
+    $count = 25;	
+    $skip = ( $page-1 ) * $count;
+    $param = isset( $_GET['barcode'] ) ?preg_replace('/[^0-9]+/', '', $_GET['barcode']) : ""; 
+    $params_types = 'sii';
+    $params = array( $param, $skip, $count );
+    $query = $get_issue_by_barcode_paged_sql;
+    if ( $param == "" || strlen( $param ) < 2 ) { $param_id = 0; } else { $param_id = 1; } 
+} // example: /v1/issue/?barcode=76194120001990111
 
 /****** 
  * Fetch data and make any fixes needed **/
