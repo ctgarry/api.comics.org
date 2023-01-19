@@ -15,9 +15,10 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
     $path = '/api/v1/';
 }
 
+// depends on Remote MySQL access hosts.
 $mysqli = new mysqli($DBServer, $DBUser, $DBPass, $DBName);
 if (mysqli_connect_errno()) {
-    exit('Error connecting to database'); 
+    exit('Error connecting to database'); // . $mysqli -> connect_error 
 }
 
 
